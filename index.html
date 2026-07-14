@@ -1,0 +1,280 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Essensplan &amp; Einkaufszettel</title>
+<style>
+  :root {
+    color-scheme: light dark;
+    --bg: #ffffff;
+    --fg: #1a1a1a;
+    --muted: #666;
+    --card: #f7f7f8;
+    --border: #e2e2e4;
+    --accent: #2f7a4f;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #14151a;
+      --fg: #e8e8ea;
+      --muted: #9a9aa2;
+      --card: #1e2027;
+      --border: #2c2e36;
+      --accent: #6fcf97;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--fg);
+    line-height: 1.5;
+  }
+  header {
+    padding: 1.25rem 1rem 0.5rem;
+    text-align: center;
+  }
+  header h1 {
+    margin: 0 0 0.25rem;
+    font-size: 1.4rem;
+  }
+  header p {
+    margin: 0;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  nav {
+    display: flex;
+    gap: 0.5rem;
+    justify-content: center;
+    padding: 0.75rem 1rem;
+    flex-wrap: wrap;
+  }
+  nav button {
+    border: 1px solid var(--border);
+    background: var(--card);
+    color: var(--fg);
+    padding: 0.5rem 1rem;
+    border-radius: 999px;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  nav button[aria-selected="true"] {
+    background: var(--accent);
+    color: #08130c;
+    border-color: var(--accent);
+    font-weight: 600;
+  }
+  main {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0.5rem 1rem 3rem;
+  }
+  #content {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.25rem 1.5rem;
+    overflow-x: auto;
+  }
+  #content h1, #content h2, #content h3 { line-height: 1.3; }
+  #content h2 {
+    border-top: 1px solid var(--border);
+    padding-top: 0.9rem;
+    margin-top: 1.2rem;
+  }
+  #content h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  #content table {
+    border-collapse: collapse;
+    width: 100%;
+    font-size: 0.9rem;
+  }
+  #content th, #content td {
+    border: 1px solid var(--border);
+    padding: 0.4rem 0.6rem;
+    text-align: left;
+  }
+  #content code {
+    background: rgba(127,127,127,0.15);
+    padding: 0.1rem 0.35rem;
+    border-radius: 4px;
+    font-size: 0.85em;
+  }
+  #status { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+  footer {
+    text-align: center;
+    color: var(--muted);
+    font-size: 0.8rem;
+    padding: 1rem;
+  }
+  a { color: var(--accent); }
+</style>
+</head>
+<body>
+<header>
+  <h1>🍽️ Essensplan &amp; Einkaufszettel</h1>
+  <p>Aktuelle Woche · automatisch generiert</p>
+</header>
+
+<nav id="tabs">
+  <button data-file="essensplan" aria-selected="true">Essensplan</button>
+  <button data-file="einkaufszettel" aria-selected="false">Einkaufszettel</button>
+</nav>
+
+<main>
+  <div id="status">Lade …</div>
+  <div id="content" hidden></div>
+</main>
+
+<footer>Datenquelle: dieses Repository · wird wöchentlich montags aktualisiert</footer>
+
+<script>
+(function () {
+  "use strict";
+
+  function escapeHtml(s) {
+    return s.replace(/[&<>"']/g, function (c) {
+      return { "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;" }[c];
+    });
+  }
+
+  // Minimaler Markdown-Renderer (Überschriften, Listen, Tabellen, Bold/Links, Absätze)
+  function renderMarkdown(md) {
+    var lines = md.replace(/\r\n/g, "\n").split("\n");
+    var html = [];
+    var i = 0;
+    var inList = false;
+
+    function inline(text) {
+      text = escapeHtml(text);
+      text = text.replace(/\[([^\]]+)\]\(([^)]+)\)/g, function (_, label, href) {
+        return '<a href="' + href + '">' + label + "</a>";
+      });
+      text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
+      return text;
+    }
+
+    function closeList() {
+      if (inList) { html.push("</ul>"); inList = false; }
+    }
+
+    while (i < lines.length) {
+      var line = lines[i];
+
+      if (/^\s*$/.test(line)) { closeList(); i++; continue; }
+      if (/^---+\s*$/.test(line)) { closeList(); i++; continue; }
+
+      var h = line.match(/^(#{1,4})\s+(.*)$/);
+      if (h) {
+        closeList();
+        var level = h[1].length;
+        html.push("<h" + level + ">" + inline(h[2]) + "</h" + level + ">");
+        i++;
+        continue;
+      }
+
+      if (/^\s*-\s+/.test(line)) {
+        if (!inList) { html.push("<ul>"); inList = true; }
+        html.push("<li>" + inline(line.replace(/^\s*-\s+/, "")) + "</li>");
+        i++;
+        continue;
+      }
+
+      if (/^\|/.test(line)) {
+        closeList();
+        var tableLines = [];
+        while (i < lines.length && /^\|/.test(lines[i])) { tableLines.push(lines[i]); i++; }
+        var rows = tableLines
+          .filter(function (l) { return !/^\|[\s-:|]+\|$/.test(l); })
+          .map(function (l) {
+            return l.split("|").slice(1, -1).map(function (c) { return c.trim(); });
+          });
+        if (rows.length) {
+          html.push("<table><thead><tr>" +
+            rows[0].map(function (c) { return "<th>" + inline(c) + "</th>"; }).join("") +
+            "</tr></thead><tbody>");
+          rows.slice(1).forEach(function (r) {
+            html.push("<tr>" + r.map(function (c) { return "<td>" + inline(c) + "</td>"; }).join("") + "</tr>");
+          });
+          html.push("</tbody></table>");
+        }
+        continue;
+      }
+
+      closeList();
+      html.push("<p>" + inline(line) + "</p>");
+      i++;
+    }
+    closeList();
+    return html.join("\n");
+  }
+
+  var files = {
+    essensplan: null,
+    einkaufszettel: null
+  };
+
+  function candidateNames(kind) {
+    var names = [];
+    for (var kw = 53; kw >= 1; kw--) {
+      var n = kw < 10 ? "0" + kw : "" + kw;
+      names.push((kind === "essensplan" ? "Essensplan_Woche_KW" : "Einkaufszettel_Woche_KW") + kw + ".md");
+    }
+    return names;
+  }
+
+  function fetchFirst(names) {
+    var idx = 0;
+    function tryNext() {
+      if (idx >= names.length) return Promise.resolve(null);
+      var name = names[idx++];
+      return fetch(name).then(function (r) {
+        if (r.ok) return r.text().then(function (t) { return { name: name, text: t }; });
+        return tryNext();
+      }).catch(tryNext);
+    }
+    return tryNext();
+  }
+
+  function show(kind) {
+    var statusEl = document.getElementById("status");
+    var contentEl = document.getElementById("content");
+    if (files[kind]) {
+      statusEl.hidden = true;
+      contentEl.hidden = false;
+      contentEl.innerHTML = renderMarkdown(files[kind].text);
+      return;
+    }
+    contentEl.hidden = true;
+    statusEl.hidden = false;
+    statusEl.textContent = "Lade …";
+    fetchFirst(candidateNames(kind)).then(function (result) {
+      if (!result) {
+        statusEl.textContent = "Keine Datei gefunden für: " + kind;
+        return;
+      }
+      files[kind] = result;
+      statusEl.hidden = true;
+      contentEl.hidden = false;
+      contentEl.innerHTML = renderMarkdown(result.text);
+    });
+  }
+
+  document.getElementById("tabs").addEventListener("click", function (e) {
+    var btn = e.target.closest("button[data-file]");
+    if (!btn) return;
+    Array.prototype.forEach.call(
+      document.querySelectorAll("#tabs button"),
+      function (b) { b.setAttribute("aria-selected", b === btn ? "true" : "false"); }
+    );
+    show(btn.dataset.file);
+  });
+
+  show("essensplan");
+})();
+</script>
+</body>
+</html>
