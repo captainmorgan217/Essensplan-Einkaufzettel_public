@@ -1,16 +1,18 @@
 # Einkaufszettel – Woche
 
-Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW30.md`).
+Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW31.md`).
 
 ## Obst & Gemüse
 - Bananen
 - Beeren (TK & frisch)
 - Birnen
 - Brokkoli
-- Champignons
+- Granatapfel(-kerne)
+- Grapefruit
+- Gurke
 - Karotten
-- Mais (Dose/TK)
 - Paprika
+- Salat (Kopfsalat/Blattsalat)
 - Spinat (frisch/TK)
 - Süßkartoffeln
 - Zucchini
@@ -24,20 +26,14 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW30.md`).
 - Milch
 - Sojamilch
 
-## Konserven / Sonstiges
-- Kokosmilch
-
 ## Fleisch & Fisch
+- Fisch (weiß, nach Wahl)
 - Hühnchenbrust
-- Rinderhack (für Fleischküchle)
-- Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
-- Bulgur
 - Couscous (Dinkel-/Vollkorn)
-- Kidneybohnen
+- Quinoa
 - Reiswaffeln
-- Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
 
@@ -47,8 +43,8 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW30.md`).
 - Leinsamen
 - Mandeln
 - Pistazien
-- Sesam
 - Sonnenblumenkerne
+- Tahin
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ---
