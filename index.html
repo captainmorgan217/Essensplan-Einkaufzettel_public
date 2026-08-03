@@ -86,6 +86,21 @@
     margin-top: 1.2rem;
   }
   #content h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  #content li.checkitem {
+    list-style: none;
+    display: flex;
+    align-items: baseline;
+    gap: 0.6rem;
+    padding: 0.15rem 0;
+  }
+  #content li.checkitem input[type="checkbox"] {
+    width: 1.15rem;
+    height: 1.15rem;
+    flex: none;
+    accent-color: var(--accent);
+  }
+  #content li.checkitem.checked span { color: var(--muted); text-decoration: line-through; }
+  #content ul:has(li.checkitem) { padding-left: 0; }
   #content table {
     border-collapse: collapse;
     width: 100%;
@@ -140,8 +155,27 @@
     });
   }
 
+  function storageKey(name) {
+    return "checked:" + name;
+  }
+
+  function loadChecked(name) {
+    try {
+      return JSON.parse(localStorage.getItem(storageKey(name)) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveChecked(name, checked) {
+    try {
+      localStorage.setItem(storageKey(name), JSON.stringify(checked));
+    } catch (e) { /* ignore (z.B. Safari Private Mode) */ }
+  }
+
   // Minimaler Markdown-Renderer (Überschriften, Listen, Tabellen, Bold/Links, Absätze)
-  function renderMarkdown(md) {
+  // withCheckboxes: Listenpunkte werden zu anklickbaren Checkboxen (Zustand via localStorage)
+  function renderMarkdown(md, withCheckboxes) {
     var lines = md.replace(/\r\n/g, "\n").split("\n");
     var html = [];
     var i = 0;
@@ -178,7 +212,17 @@
 
       if (/^\s*-\s+/.test(line)) {
         if (!inList) { html.push("<ul>"); inList = true; }
-        html.push("<li>" + inline(line.replace(/^\s*-\s+/, "")) + "</li>");
+        var itemText = line.replace(/^\s*-\s+/, "");
+        if (withCheckboxes) {
+          html.push(
+            '<li class="checkitem" data-item="' + escapeHtml(itemText) + '">' +
+            '<input type="checkbox">' +
+            "<span>" + inline(itemText) + "</span>" +
+            "</li>"
+          );
+        } else {
+          html.push("<li>" + inline(itemText) + "</li>");
+        }
         i++;
         continue;
       }
@@ -239,13 +283,42 @@
     return tryNext();
   }
 
+  function applyChecklist(contentEl, name) {
+    var checked = loadChecked(name);
+    var items = contentEl.querySelectorAll("li.checkitem");
+    Array.prototype.forEach.call(items, function (li) {
+      var key = li.dataset.item;
+      if (checked[key]) {
+        li.classList.add("checked");
+        li.querySelector("input").checked = true;
+      }
+    });
+    contentEl.onclick = function (e) {
+      var li = e.target.closest("li.checkitem");
+      if (!li) return;
+      var checkbox = li.querySelector("input");
+      if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
+      li.classList.toggle("checked", checkbox.checked);
+      var state = loadChecked(name);
+      state[li.dataset.item] = checkbox.checked;
+      saveChecked(name, state);
+    };
+  }
+
+  function render(kind, result) {
+    var contentEl = document.getElementById("content");
+    var withCheckboxes = kind === "einkaufszettel";
+    contentEl.innerHTML = renderMarkdown(result.text, withCheckboxes);
+    if (withCheckboxes) applyChecklist(contentEl, result.name);
+  }
+
   function show(kind) {
     var statusEl = document.getElementById("status");
     var contentEl = document.getElementById("content");
     if (files[kind]) {
       statusEl.hidden = true;
       contentEl.hidden = false;
-      contentEl.innerHTML = renderMarkdown(files[kind].text);
+      render(kind, files[kind]);
       return;
     }
     contentEl.hidden = true;
@@ -259,7 +332,7 @@
       files[kind] = result;
       statusEl.hidden = true;
       contentEl.hidden = false;
-      contentEl.innerHTML = renderMarkdown(result.text);
+      render(kind, result);
     });
   }
 
