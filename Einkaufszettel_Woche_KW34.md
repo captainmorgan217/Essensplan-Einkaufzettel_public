@@ -56,6 +56,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Avocados
 - Zimt
 - TK Beeren
+- Mandelmuß
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
