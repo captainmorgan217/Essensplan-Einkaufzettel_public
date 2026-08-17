@@ -48,6 +48,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
+- Butter gesalzen
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
