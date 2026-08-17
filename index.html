@@ -118,6 +118,50 @@
     font-size: 0.85em;
   }
   #status { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+
+  /* Eingabefeld zum Hinzufügen von unterwegs */
+  #additem { display: none; margin-bottom: 0.75rem; }
+  #additem.visible { display: block; }
+  #additem form { display: flex; gap: 0.5rem; }
+  #additem input[type="text"] {
+    flex: 1 1 auto;
+    min-width: 0;
+    padding: 0.6rem 0.8rem;
+    font-size: 1rem;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    background: var(--card);
+    color: var(--fg);
+  }
+  #additem button {
+    flex: none;
+    padding: 0.6rem 1.1rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border: 1px solid var(--accent);
+    border-radius: 10px;
+    background: var(--accent);
+    color: #08130c;
+    cursor: pointer;
+  }
+  #additem button:disabled { opacity: 0.5; cursor: default; }
+  #addmsg { font-size: 0.85rem; color: var(--muted); padding: 0.4rem 0.2rem 0; min-height: 1.2em; }
+  #addmsg.error { color: #d9534f; }
+  #setup {
+    font-size: 0.85rem;
+    color: var(--muted);
+    padding: 0.5rem 0.2rem 0;
+  }
+  #setup button {
+    background: none;
+    border: none;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+  }
+  #content li.checkitem.pending span { opacity: 0.55; font-style: italic; }
   footer {
     text-align: center;
     color: var(--muted);
@@ -139,6 +183,14 @@
 </nav>
 
 <main>
+  <div id="additem">
+    <form id="addform" autocomplete="off">
+      <input type="text" id="addinput" placeholder="+ Artikel hinzufügen …" enterkeyhint="done">
+      <button type="submit" id="addbtn">Hinzu</button>
+    </form>
+    <div id="addmsg"></div>
+    <div id="setup"></div>
+  </div>
   <div id="status">Lade …</div>
   <div id="content" hidden></div>
 </main>
@@ -336,6 +388,201 @@
     });
   }
 
+  // --- Artikel von unterwegs hinzufügen (GitHub Contents API) ---
+
+  var REPO = "captainmorgan217/Essensplan-Einkaufzettel_public";
+  var MANUELL_HEADING = "## Manuell hinzugefügt";
+  var TOKEN_KEY = "gh_token";
+
+  var addEl = document.getElementById("additem");
+  var addForm = document.getElementById("addform");
+  var addInput = document.getElementById("addinput");
+  var addBtn = document.getElementById("addbtn");
+  var addMsg = document.getElementById("addmsg");
+  var setupEl = document.getElementById("setup");
+
+  function getToken() {
+    try { return localStorage.getItem(TOKEN_KEY) || ""; } catch (e) { return ""; }
+  }
+
+  function setToken(t) {
+    try {
+      if (t) localStorage.setItem(TOKEN_KEY, t);
+      else localStorage.removeItem(TOKEN_KEY);
+    } catch (e) { /* ignore */ }
+  }
+
+  function message(text, isError) {
+    addMsg.textContent = text || "";
+    addMsg.classList.toggle("error", !!isError);
+  }
+
+  function renderSetup() {
+    setupEl.innerHTML = "";
+    var hasToken = !!getToken();
+    var btn = document.createElement("button");
+    btn.type = "button";
+    if (hasToken) {
+      setupEl.appendChild(document.createTextNode("Gerät verbunden · "));
+      btn.textContent = "Zugang entfernen";
+      btn.onclick = function () {
+        setToken("");
+        renderSetup();
+        message("Zugang entfernt.");
+      };
+    } else {
+      setupEl.appendChild(document.createTextNode("Zum Hinzufügen einmalig verbinden: "));
+      btn.textContent = "Token einfügen";
+      btn.onclick = function () {
+        var t = prompt("GitHub Fine-grained Token einfügen (wird nur auf diesem Gerät gespeichert):");
+        if (t && t.trim()) {
+          setToken(t.trim());
+          renderSetup();
+          message("Gerät verbunden. Du kannst jetzt Artikel hinzufügen.");
+        }
+      };
+    }
+    setupEl.appendChild(btn);
+    addInput.disabled = !hasToken;
+    addBtn.disabled = !hasToken;
+  }
+
+  // Fügt den Artikel unter '## Manuell hinzugefügt' ein.
+  function appendToSection(text, item) {
+    var lines = text.replace(/\r\n/g, "\n").split("\n");
+    var idx = -1;
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].trim() === MANUELL_HEADING) { idx = i; break; }
+    }
+    if (idx === -1) {
+      // Abschnitt fehlt (z.B. alte Datei) – vor dem Schluss-Trenner anlegen.
+      var sep = lines.length;
+      for (var j = lines.length - 1; j >= 0; j--) {
+        if (/^---+\s*$/.test(lines[j].trim())) { sep = j; break; }
+      }
+      lines.splice(sep, 0, MANUELL_HEADING, "- " + item, "");
+      return lines.join("\n");
+    }
+    // Ans Ende der Liste dieses Abschnitts anhängen.
+    var insertAt = idx + 1;
+    for (var k = idx + 1; k < lines.length; k++) {
+      var s = lines[k].trim();
+      if (s.indexOf("## ") === 0 || /^---+$/.test(s)) break;
+      if (s.indexOf("- ") === 0) insertAt = k + 1;
+    }
+    lines.splice(insertAt, 0, "- " + item);
+    return lines.join("\n");
+  }
+
+  function b64encode(str) {
+    return btoa(String.fromCharCode.apply(null, new TextEncoder().encode(str)));
+  }
+
+  function b64decode(b64) {
+    var bin = atob(b64.replace(/\s/g, ""));
+    var bytes = new Uint8Array(bin.length);
+    for (var i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return new TextDecoder("utf-8").decode(bytes);
+  }
+
+  function ghHeaders(token) {
+    return {
+      "Authorization": "Bearer " + token,
+      "Accept": "application/vnd.github+json",
+      "X-GitHub-Api-Version": "2022-11-28"
+    };
+  }
+
+  // Optimistisch in die angezeigte Liste einfügen, damit es sofort sichtbar ist.
+  function showPending(item) {
+    var contentEl = document.getElementById("content");
+    var heads = contentEl.querySelectorAll("h2");
+    var target = null;
+    Array.prototype.forEach.call(heads, function (h) {
+      if (h.textContent.trim() === "Manuell hinzugefügt") target = h;
+    });
+    var ul;
+    if (target && target.nextElementSibling && target.nextElementSibling.tagName === "UL") {
+      ul = target.nextElementSibling;
+    } else if (target) {
+      ul = document.createElement("ul");
+      target.parentNode.insertBefore(ul, target.nextSibling);
+    } else {
+      return null;
+    }
+    var li = document.createElement("li");
+    li.className = "checkitem pending";
+    li.dataset.item = item;
+    li.innerHTML = '<input type="checkbox"><span></span>';
+    li.querySelector("span").textContent = item;
+    ul.appendChild(li);
+    return li;
+  }
+
+  function addItem(item) {
+    var token = getToken();
+    var current = files.einkaufszettel;
+    if (!token || !current) return Promise.resolve();
+
+    var path = current.name;
+    var url = "https://api.github.com/repos/" + REPO + "/contents/" + encodeURIComponent(path);
+    var pendingLi = showPending(item);
+
+    addBtn.disabled = true;
+    message("Wird gespeichert …");
+
+    // Immer frisch laden: sha und aktueller Stand können sich geändert haben.
+    return fetch(url + "?ref=main&t=" + Date.now(), { headers: ghHeaders(token), cache: "no-store" })
+      .then(function (r) {
+        if (r.status === 401 || r.status === 403) throw new Error("Zugang ungültig oder abgelaufen.");
+        if (!r.ok) throw new Error("Datei nicht gefunden (" + r.status + ").");
+        return r.json();
+      })
+      .then(function (data) {
+        var text = b64decode(data.content);
+        var updated = appendToSection(text, item);
+        return fetch(url, {
+          method: "PUT",
+          headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(token)),
+          body: JSON.stringify({
+            message: "Einkaufszettel: " + item + " hinzugefügt",
+            content: b64encode(updated),
+            sha: data.sha,
+            branch: "main"
+          })
+        }).then(function (r) {
+          if (r.status === 409) throw new Error("Gleichzeitige Änderung – bitte nochmal versuchen.");
+          if (!r.ok) throw new Error("Speichern fehlgeschlagen (" + r.status + ").");
+          return updated;
+        });
+      })
+      .then(function (updated) {
+        files.einkaufszettel.text = updated;
+        if (pendingLi) pendingLi.classList.remove("pending");
+        message("„" + item + "“ hinzugefügt.");
+      })
+      .catch(function (err) {
+        if (pendingLi && pendingLi.parentNode) pendingLi.parentNode.removeChild(pendingLi);
+        message(err.message, true);
+      })
+      .then(function () {
+        addBtn.disabled = !getToken();
+      });
+  }
+
+  addForm.addEventListener("submit", function (e) {
+    e.preventDefault();
+    var item = addInput.value.trim();
+    if (!item) return;
+    addInput.value = "";
+    addItem(item);
+  });
+
+  function updateAddVisibility(kind) {
+    addEl.classList.toggle("visible", kind === "einkaufszettel");
+    if (kind === "einkaufszettel") { message(""); renderSetup(); }
+  }
+
   document.getElementById("tabs").addEventListener("click", function (e) {
     var btn = e.target.closest("button[data-file]");
     if (!btn) return;
@@ -343,9 +590,11 @@
       document.querySelectorAll("#tabs button"),
       function (b) { b.setAttribute("aria-selected", b === btn ? "true" : "false"); }
     );
+    updateAddVisibility(btn.dataset.file);
     show(btn.dataset.file);
   });
 
+  updateAddVisibility("essensplan");
   show("essensplan");
 })();
 </script>

@@ -47,5 +47,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Sonnenblumenkerne
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
+## Manuell hinzugefügt
+
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
