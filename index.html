@@ -117,6 +117,31 @@
     border-radius: 4px;
     font-size: 0.85em;
   }
+  /* Aufklappbare Rezeptdetails bei Mittag/Abend */
+  #content details.rezept { margin: 0.25rem 0 0.5rem; }
+  #content details.rezept > summary {
+    cursor: pointer;
+    color: var(--accent);
+    font-size: 0.85rem;
+    padding: 0.25rem 0;
+    list-style: none;
+    user-select: none;
+  }
+  #content details.rezept > summary::-webkit-details-marker { display: none; }
+  #content details.rezept > summary::before { content: "▸ "; }
+  #content details.rezept[open] > summary::before { content: "▾ "; }
+  #content details.rezept[open] > summary { margin-bottom: 0.15rem; }
+  #content details.rezept > ul {
+    margin: 0;
+    padding-left: 1.1rem;
+    border-left: 2px solid var(--border);
+  }
+  #content details.rezept > ul > li {
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding: 0.1rem 0;
+  }
+
   #status { text-align: center; color: var(--muted); padding: 2rem 1rem; }
 
   /* Eingabefeld zum Hinzufügen von unterwegs */
@@ -239,6 +264,8 @@
         return '<a href="' + href + '">' + label + "</a>";
       });
       text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+      text = text.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+      text = text.replace(/_([^_]+)_/g, "<em>$1</em>");
       text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
       return text;
     }
@@ -271,6 +298,26 @@
             '<input type="checkbox">' +
             "<span>" + inline(itemText) + "</span>" +
             "</li>"
+          );
+          i++;
+          continue;
+        }
+
+        // Eingerückte Unterpunkte gehören zu diesem Eintrag (Rezeptdetails).
+        var isTop = !/^\s/.test(line);
+        var details = [];
+        if (isTop) {
+          while (i + 1 < lines.length && /^\s+-\s+/.test(lines[i + 1])) {
+            details.push(lines[i + 1].replace(/^\s*-\s+/, ""));
+            i++;
+          }
+        }
+        if (details.length) {
+          html.push(
+            "<li>" + inline(itemText) +
+            '<details class="rezept"><summary>Rezept anzeigen</summary><ul>' +
+            details.map(function (d) { return "<li>" + inline(d) + "</li>"; }).join("") +
+            "</ul></details></li>"
           );
         } else {
           html.push("<li>" + inline(itemText) + "</li>");
