@@ -6,14 +6,13 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Beeren (TK & frisch)
 - Birnen
 - Brokkoli
-- Granatapfel(-kerne)
-- Grapefruit
+- Champignons
+- Gurke
 - Karotten
+- Kresse
 - Mais (Dose/TK)
 - Paprika
-- Salat (Kopfsalat/Blattsalat)
 - Spinat (frisch/TK)
-- Süßkartoffeln
 - Äpfel
 
 ## Kühlregal / Milchprodukte
@@ -29,12 +28,15 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Kokosmilch
 
 ## Fleisch & Fisch
+- Fisch (weiß, nach Wahl)
 - Hühnchenbrust
+- Rinderhack (für Fleischküchle)
+- Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
 - Kidneybohnen
+- Quinoa
 - Reiswaffeln
-- Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
 
@@ -44,7 +46,9 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 - Leinsamen
 - Mandeln
 - Pistazien
+- Sesam
 - Sonnenblumenkerne
+- Tahin
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt

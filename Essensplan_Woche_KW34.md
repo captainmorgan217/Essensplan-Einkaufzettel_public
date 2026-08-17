@@ -10,50 +10,64 @@ Basierend auf [Rezeptuebersicht.md](Rezeptuebersicht.md) und der Leitlinie "Orde
 
 ## Montag (kein Gym)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Overnight Oats
-- **Mittag:** Süßkartoffel-Reis-Bowl *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
-- **Abend:** Vegetarischer Linsen-Bolognese mit Vollkornnudeln *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+- **Mittag:** Linsen-Gemüse-Curry mit Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Zutaten:_ Rote Linsen, Kokosmilch, Spinat (frisch/TK), Tomaten (Rispen/Kirschtomaten), Vollkornreis
+- **Abend:** Rinderhack-Chili con Carne mit Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Zutaten:_ Rinderhack (für Fleischküchle), Kidneybohnen, Tomaten (Rispen/Kirschtomaten), Paprika, Vollkornreis
 - **Snack:** Handvoll Mandeln
 - **Abendsnack (proteinreich):** Weißer Joghurt mit Beeren & Mandeln
 
 ## Dienstag (Gym)
 - **Frühstück:** Amino Shake (Miracle Morning Shake), danach nach dem Training Trockenfrüchte-Nuss-Mix mit Skyr
-- **Mittag:** Süßkartoffel-Reis-Bowl
-- **Abend:** Vegetarischer Linsen-Bolognese mit Vollkornnudeln
+- **Mittag:** Linsen-Gemüse-Curry mit Vollkornreis
+  - _Zutaten:_ Rote Linsen, Kokosmilch, Spinat (frisch/TK), Tomaten (Rispen/Kirschtomaten), Vollkornreis
+- **Abend:** Rinderhack-Chili con Carne mit Vollkornreis
+  - _Zutaten:_ Rinderhack (für Fleischküchle), Kidneybohnen, Tomaten (Rispen/Kirschtomaten), Paprika, Vollkornreis
 - **Snack:** Handvoll Kürbiskerne & Sonnenblumenkerne
 - **Abendsnack (proteinreich):** Magerquark mit Marmelade & Müsli
 
 ## Mittwoch (kein Gym)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Porridge Vollkorn-Haferflocken mit Apfel & Birne
-- **Mittag:** Süßkartoffel-Reis-Bowl
-- **Abend:** Vegetarischer Linsen-Bolognese mit Vollkornnudeln
+- **Mittag:** Linsen-Gemüse-Curry mit Vollkornreis
+  - _Zutaten:_ Rote Linsen, Kokosmilch, Spinat (frisch/TK), Tomaten (Rispen/Kirschtomaten), Vollkornreis
+- **Abend:** Rinderhack-Chili con Carne mit Vollkornreis
+  - _Zutaten:_ Rinderhack (für Fleischküchle), Kidneybohnen, Tomaten (Rispen/Kirschtomaten), Paprika, Vollkornreis
 - **Snack:** Magerquark mit Chiasamen
 - **Abendsnack (proteinreich):** Skyr mit Leinsamen & Obst
 
 ## Donnerstag (kein Gym)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Skyr-Beeren-Porridge
-- **Mittag:** Rote-Linsen-Dal mit Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
-- **Abend:** Hühnchen-Gemüse-Curry mit Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+- **Mittag:** Bulgur-Hackfleisch-Pfanne mit Zucchini & Paprika *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Zutaten:_ Bulgur, Rinderhack (für Fleischküchle), Zucchini, Paprika, Tomaten (Rispen/Kirschtomaten)
+- **Abend:** High Protein Spinat-Lasagne *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Zutaten:_ Spinat (frisch/TK), Frischkäse (körnig, light), Eier, Reibekäse light
 - **Snack:** Handvoll Mandeln & Pistazien
 - **Abendsnack (proteinreich):** Magerquark mit Beeren & Müsli
 
 ## Freitag (Gym)
 - **Frühstück:** Amino Shake (Miracle Morning Shake), danach nach dem Training Reiswaffeln mit Honig & Banane
-- **Mittag:** Rote-Linsen-Dal mit Vollkornreis
-- **Abend:** Hühnchen-Gemüse-Curry mit Vollkornreis
+- **Mittag:** Bulgur-Hackfleisch-Pfanne mit Zucchini & Paprika
+  - _Zutaten:_ Bulgur, Rinderhack (für Fleischküchle), Zucchini, Paprika, Tomaten (Rispen/Kirschtomaten)
+- **Abend:** High Protein Spinat-Lasagne
+  - _Zutaten:_ Spinat (frisch/TK), Frischkäse (körnig, light), Eier, Reibekäse light
 - **Snack:** Pistazien-Energyballs
 - **Abendsnack (proteinreich):** Griechischer Joghurt mit Honig & Chiasamen
 
 ## Samstag (Weekend Spezial)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Avocado-Toast mit Rührei
-- **Mittag:** Hühnchen mit Kartoffeln, Salat, Grapefruit
-- **Abend:** Ofengemüse mit Feta & schwarzen Bohnen
+- **Mittag:** Mediterrane Quinoa-Bowl
+  - _Zutaten:_ Quinoa, Hühnchenbrust, Zucchini, Paprika, Tomaten (Rispen/Kirschtomaten), Gurke, Sonnenblumenkerne
+- **Abend:** Fisch mit Dinkel-Couscous, Brokkoli, Tahin-Dressing
+  - _Zutaten:_ Fisch (weiß, nach Wahl), Couscous (Dinkel-/Vollkorn), Brokkoli, Tahin
 - **Snack:** Handvoll Mandeln
 - **Abendsnack (proteinreich):** Magerquark mit Marmelade & Müsli
 
 ## Sonntag (Gym)
 - **Frühstück:** Amino Shake (Miracle Morning Shake), danach nach dem Training Magerquark mit Beeren & Haferflocken
 - **Mittag:** Hähnchen-Chili mit Kidneybohnen & Vollkornreis
-- **Abend:** High Protein Spinat-Lasagne
+  - _Zutaten:_ Hühnchenbrust, Kidneybohnen, Vollkornreis, Paprika, Tomaten (Rispen/Kirschtomaten), Mais (Dose/TK)
+- **Abend:** Gemüse-Pfanne mit Champignons, Spinat, Kresse, Tofu, Sesam, Couscous
+  - _Zutaten:_ Champignons, Spinat (frisch/TK), Kresse, Tofu, Sesam, Couscous (Dinkel-/Vollkorn)
 - **Snack:** Handvoll Mandeln & Pistazien
 - **Abendsnack (proteinreich):** Magerquark mit Beeren & Müsli
 
