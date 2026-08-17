@@ -315,19 +315,21 @@
 
   function candidateNames(kind) {
     var names = [];
+    var prefix = kind === "essensplan" ? "Essensplan_Woche_KW" : "Einkaufszettel_Woche_KW";
     for (var kw = 53; kw >= 1; kw--) {
-      var n = kw < 10 ? "0" + kw : "" + kw;
-      names.push((kind === "essensplan" ? "Essensplan_Woche_KW" : "Einkaufszettel_Woche_KW") + kw + ".md");
+      names.push(prefix + kw + ".md");
     }
     return names;
   }
 
+  // cache: "no-store" ist wichtig: Safari liefert sonst die zwischengespeicherte
+  // Fassung aus und neu hinzugefügte Artikel fehlen in der Anzeige.
   function fetchFirst(names) {
     var idx = 0;
     function tryNext() {
       if (idx >= names.length) return Promise.resolve(null);
       var name = names[idx++];
-      return fetch(name).then(function (r) {
+      return fetch(name + "?t=" + Date.now(), { cache: "no-store" }).then(function (r) {
         if (r.ok) return r.text().then(function (t) { return { name: name, text: t }; });
         return tryNext();
       }).catch(tryNext);
@@ -501,14 +503,19 @@
     Array.prototype.forEach.call(heads, function (h) {
       if (h.textContent.trim() === "Manuell hinzugefügt") target = h;
     });
+    if (!target) {
+      // Überschrift noch nicht im DOM (leerer Abschnitt wird nicht gerendert) – anlegen,
+      // damit auch der erste Artikel der Woche sofort sichtbar ist.
+      target = document.createElement("h2");
+      target.textContent = "Manuell hinzugefügt";
+      contentEl.appendChild(target);
+    }
     var ul;
-    if (target && target.nextElementSibling && target.nextElementSibling.tagName === "UL") {
+    if (target.nextElementSibling && target.nextElementSibling.tagName === "UL") {
       ul = target.nextElementSibling;
-    } else if (target) {
+    } else {
       ul = document.createElement("ul");
       target.parentNode.insertBefore(ul, target.nextSibling);
-    } else {
-      return null;
     }
     var li = document.createElement("li");
     li.className = "checkitem pending";
