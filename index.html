@@ -187,6 +187,29 @@
     padding: 0;
   }
   #content li.checkitem.pending span { opacity: 0.55; font-style: italic; }
+  #content li.checkitem.pending .delbtn { opacity: 0.3; pointer-events: none; }
+
+  /* Löschknopf – nur bei manuell hinzugefügten Einträgen */
+  #content li.checkitem.manual { position: relative; padding-right: 2rem; }
+  #content li.checkitem .delbtn {
+    position: absolute;
+    right: 0;
+    top: 50%;
+    transform: translateY(-50%);
+    background: none;
+    border: none;
+    color: var(--muted);
+    font-size: 1rem;
+    line-height: 1;
+    padding: 0.45rem 0.55rem;
+    cursor: pointer;
+    border-radius: 6px;
+  }
+  #content li.checkitem .delbtn:hover,
+  #content li.checkitem .delbtn:focus-visible {
+    color: #d9534f;
+    background: rgba(217, 83, 79, 0.12);
+  }
   footer {
     text-align: center;
     color: var(--muted);
@@ -397,6 +420,12 @@
     contentEl.onclick = function (e) {
       var li = e.target.closest("li.checkitem");
       if (!li) return;
+      // Klick auf den Löschknopf darf nicht als Abhaken gelten.
+      if (e.target.closest(".delbtn")) {
+        e.preventDefault();
+        deleteItem(li.dataset.item, li);
+        return;
+      }
       var checkbox = li.querySelector("input");
       if (e.target !== checkbox) checkbox.checked = !checkbox.checked;
       li.classList.toggle("checked", checkbox.checked);
@@ -410,7 +439,10 @@
     var contentEl = document.getElementById("content");
     var withCheckboxes = kind === "einkaufszettel";
     contentEl.innerHTML = renderMarkdown(result.text, withCheckboxes);
-    if (withCheckboxes) applyChecklist(contentEl, result.name);
+    if (withCheckboxes) {
+      applyChecklist(contentEl, result.name);
+      markManualItems(contentEl);
+    }
   }
 
   function show(kind) {
@@ -477,6 +509,10 @@
       btn.onclick = function () {
         setToken("");
         renderSetup();
+        Array.prototype.forEach.call(
+          document.querySelectorAll("#content .delbtn"),
+          function (b) { b.parentNode.removeChild(b); }
+        );
         message("Zugang entfernt.");
       };
     } else {
@@ -487,6 +523,7 @@
         if (t && t.trim()) {
           setToken(t.trim());
           renderSetup();
+          markManualItems(document.getElementById("content"));
           message("Gerät verbunden. Du kannst jetzt Artikel hinzufügen.");
         }
       };
@@ -521,6 +558,26 @@
     }
     lines.splice(insertAt, 0, "- " + item);
     return lines.join("\n");
+  }
+
+  // Entfernt einen Artikel aus '## Manuell hinzugefügt'. Gibt null zurück,
+  // wenn er dort nicht (mehr) steht – dann wurde nichts geändert.
+  function removeFromSection(text, item) {
+    var lines = text.replace(/\r\n/g, "\n").split("\n");
+    var idx = -1;
+    for (var i = 0; i < lines.length; i++) {
+      if (lines[i].trim() === MANUELL_HEADING) { idx = i; break; }
+    }
+    if (idx === -1) return null;
+    for (var k = idx + 1; k < lines.length; k++) {
+      var s = lines[k].trim();
+      if (s.indexOf("## ") === 0 || /^---+$/.test(s)) break;
+      if (s.indexOf("- ") === 0 && s.replace(/^-\s+/, "").trim() === item) {
+        lines.splice(k, 1);
+        return lines.join("\n");
+      }
+    }
+    return null;
   }
 
   function b64encode(str) {
@@ -573,14 +630,15 @@
     return li;
   }
 
-  function addItem(item) {
+  // Gemeinsame Schreiblogik für Hinzufügen und Löschen.
+  // transform(text) -> neuer Text oder null (= nichts zu tun).
+  function updateFile(item, verb, transform, onOk, onFail) {
     var token = getToken();
     var current = files.einkaufszettel;
     if (!token || !current) return Promise.resolve();
 
-    var path = current.name;
-    var url = "https://api.github.com/repos/" + REPO + "/contents/" + encodeURIComponent(path);
-    var pendingLi = showPending(item);
+    var url = "https://api.github.com/repos/" + REPO + "/contents/" +
+      encodeURIComponent(current.name);
 
     addBtn.disabled = true;
     message("Wird gespeichert …");
@@ -593,13 +651,13 @@
         return r.json();
       })
       .then(function (data) {
-        var text = b64decode(data.content);
-        var updated = appendToSection(text, item);
+        var updated = transform(b64decode(data.content));
+        if (updated === null) throw new Error("„" + item + "“ steht nicht mehr in der Liste.");
         return fetch(url, {
           method: "PUT",
           headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(token)),
           body: JSON.stringify({
-            message: "Einkaufszettel: " + item + " hinzugefügt",
+            message: "Einkaufszettel: " + item + " " + verb,
             content: b64encode(updated),
             sha: data.sha,
             branch: "main"
@@ -612,16 +670,65 @@
       })
       .then(function (updated) {
         files.einkaufszettel.text = updated;
-        if (pendingLi) pendingLi.classList.remove("pending");
-        message("„" + item + "“ hinzugefügt.");
+        if (onOk) onOk();
+        message("„" + item + "“ " + verb + ".");
       })
       .catch(function (err) {
-        if (pendingLi && pendingLi.parentNode) pendingLi.parentNode.removeChild(pendingLi);
+        if (onFail) onFail();
         message(err.message, true);
       })
       .then(function () {
         addBtn.disabled = !getToken();
       });
+  }
+
+  function addItem(item) {
+    var pendingLi = showPending(item);
+    return updateFile(item, "hinzugefügt",
+      function (text) { return appendToSection(text, item); },
+      function () { if (pendingLi) { pendingLi.classList.remove("pending"); addDeleteButton(pendingLi); } },
+      function () { if (pendingLi && pendingLi.parentNode) pendingLi.parentNode.removeChild(pendingLi); });
+  }
+
+  function deleteItem(item, li) {
+    li.classList.add("pending");
+    return updateFile(item, "gelöscht",
+      function (text) { return removeFromSection(text, item); },
+      function () {
+        if (li.parentNode) li.parentNode.removeChild(li);
+        // Abgehakt-Zustand mit entfernen, damit ein späterer gleicher Eintrag frisch startet.
+        var state = loadChecked(files.einkaufszettel.name);
+        delete state[item];
+        saveChecked(files.einkaufszettel.name, state);
+      },
+      function () { li.classList.remove("pending"); });
+  }
+
+  // Löschknopf an einen Eintrag hängen (nur manuelle Einträge bekommen einen).
+  function addDeleteButton(li) {
+    if (li.querySelector(".delbtn")) return;
+    var btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = "delbtn";
+    btn.setAttribute("aria-label", "„" + li.dataset.item + "“ löschen");
+    btn.textContent = "✕";
+    li.appendChild(btn);
+  }
+
+  // Nach jedem Rendern: Einträge unter 'Manuell hinzugefügt' mit Löschknopf versehen.
+  function markManualItems(contentEl) {
+    var heads = contentEl.querySelectorAll("h2");
+    var target = null;
+    Array.prototype.forEach.call(heads, function (h) {
+      if (h.textContent.trim() === "Manuell hinzugefügt") target = h;
+    });
+    if (!target) return;
+    var ul = target.nextElementSibling;
+    if (!ul || ul.tagName !== "UL") return;
+    Array.prototype.forEach.call(ul.querySelectorAll("li.checkitem"), function (li) {
+      li.classList.add("manual");
+      if (getToken()) addDeleteButton(li);
+    });
   }
 
   addForm.addEventListener("submit", function (e) {
