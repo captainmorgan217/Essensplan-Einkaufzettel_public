@@ -54,7 +54,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW34.md`).
 ## Manuell hinzugefügt
 - Butter gesalzen
 - Avocados
-- Brot
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
