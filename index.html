@@ -13,6 +13,11 @@
     --card: #f7f7f8;
     --border: #e2e2e4;
     --accent: #2f7a4f;
+    /* Amber als zweite Akzentfarbe: Serie, Logo und Zubereitung */
+    --amber: #c2710c;
+    --amber-weich: rgba(194, 113, 12, 0.12);
+    --amber-rand: rgba(194, 113, 12, 0.38);
+    --auf-amber: #2a1704;
   }
   @media (prefers-color-scheme: dark) {
     :root {
@@ -22,6 +27,10 @@
       --card: #1e2027;
       --border: #2c2e36;
       --accent: #6fcf97;
+      --amber: #f0a13c;
+      --amber-weich: rgba(240, 161, 60, 0.14);
+      --amber-rand: rgba(240, 161, 60, 0.42);
+      --auf-amber: #1b1204;
     }
   }
   * { box-sizing: border-box; }
@@ -32,13 +41,53 @@
     color: var(--fg);
     line-height: 1.5;
   }
+  /* Kopfbereich: Logo links, Textblock (Titel/Untertitel/Tabs) rechts.
+     stretch sorgt dafür, dass das Logo exakt so hoch wird wie die drei Zeilen. */
+  #kopf {
+    display: flex;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.9rem;
+    padding: 1rem 1rem 0.35rem;
+  }
+  #kopf .kopftext {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-width: 0;
+  }
   header {
-    padding: 1.25rem 1rem 0.5rem;
-    text-align: center;
+    padding: 0;
+    text-align: left;
   }
   header h1 {
-    margin: 0 0 0.25rem;
+    margin: 0 0 0.15rem;
     font-size: 1.4rem;
+  }
+  /* Schmale Geräte: Titel etwas kleiner, damit Logo und Text nebeneinander passen. */
+  @media (max-width: 400px) {
+    #kopf { gap: 0.7rem; padding: 0.85rem 0.75rem 0.35rem; }
+    #kopf .logo { width: 5.4rem; height: 5.4rem; }
+    header h1 { font-size: 1.15rem; }
+    header p { font-size: 0.82rem; }
+  }
+  /* Bleistiftzeichnung als Maske: Deckkraft aus dem Bild, Farbe aus dem CSS –
+     dadurch bleibt sie hell wie dunkel lesbar.
+     Feste Breite/Höhe: ein leeres <span> mit nur aspect-ratio bekäme Breite 0. */
+  #kopf .logo {
+    flex: none;
+    width: 6.4rem;
+    height: 6.4rem;
+    background: var(--amber);
+    -webkit-mask: url("conan.png") no-repeat center / contain;
+    mask: url("conan.png") no-repeat center / contain;
+  }
+  /* Ohne Maskenunterstützung (sehr alte Browser): Bild direkt zeigen. */
+  @supports not ((-webkit-mask: url("")) or (mask: url(""))) {
+    #kopf .logo {
+      background: url("conan.png") no-repeat center / contain;
+      opacity: 0.8;
+    }
   }
   header p {
     margin: 0;
@@ -48,8 +97,8 @@
   nav {
     display: flex;
     gap: 0.5rem;
-    justify-content: center;
-    padding: 0.75rem 1rem;
+    justify-content: flex-start;
+    padding: 0.6rem 0 0;
     flex-wrap: wrap;
   }
   nav button {
@@ -121,8 +170,9 @@
   #content details.rezept { margin: 0.25rem 0 0.5rem; }
   #content details.rezept > summary {
     cursor: pointer;
-    color: var(--accent);
+    color: var(--amber);
     font-size: 0.85rem;
+    font-weight: 600;
     padding: 0.25rem 0;
     list-style: none;
     user-select: none;
@@ -141,8 +191,155 @@
     color: var(--muted);
     padding: 0.1rem 0;
   }
+  /* Zutaten / Zubereitung im Dropdown */
+  #content details.rezept > .titel {
+    margin: 0.5rem 0 0.15rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    color: var(--amber);
+  }
+  #content details.rezept > .titel:first-of-type { margin-top: 0.1rem; }
+  #content details.rezept > .zeile {
+    margin: 0;
+    font-size: 0.88rem;
+    color: var(--muted);
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--border);
+  }
+  #content details.rezept > .schritte {
+    margin: 0;
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--amber-rand);
+    list-style: none;
+    counter-reset: schritt;
+  }
+  #content details.rezept > .schritte > li {
+    position: relative;
+    font-size: 0.88rem;
+    color: var(--fg);
+    padding: 0.22rem 0 0.22rem 1.6rem;
+    counter-increment: schritt;
+  }
+  #content details.rezept > .schritte > li::before {
+    content: counter(schritt);
+    position: absolute;
+    left: 0;
+    top: 0.28rem;
+    width: 1.15rem;
+    height: 1.15rem;
+    border-radius: 50%;
+    background: var(--amber-weich);
+    border: 1px solid var(--amber-rand);
+    color: var(--amber);
+    font-size: 0.68rem;
+    font-weight: 700;
+    line-height: 1.05rem;
+    text-align: center;
+  }
 
   #status { text-align: center; color: var(--muted); padding: 2rem 1rem; }
+
+  /* Fortschritt & Serie – Belohnung fürs Abhaken der Mahlzeiten */
+  #fortschritt {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 0.8rem 1rem;
+    margin-bottom: 0.75rem;
+  }
+  #fortschritt .zeile {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 0.75rem;
+    font-size: 0.95rem;
+  }
+  #fortschritt .zahl { font-weight: 600; }
+  #fortschritt .serie { white-space: nowrap; }
+  #fortschritt .serie .leer { color: var(--muted); font-size: 0.85rem; }
+
+  /* Serien-Badge: Pille mit Flamme, wird mit längerer Serie kräftiger */
+  #fortschritt .badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.2rem 0.6rem 0.2rem 0.45rem;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    color: var(--amber);
+    background: var(--amber-weich);
+    border: 1px solid var(--amber-rand);
+  }
+  #fortschritt .badge b { font-weight: 700; font-size: 0.95rem; }
+  #fortschritt .flamme { width: 1rem; height: 1rem; flex: none; display: block; }
+  /* Der Kern bleibt hell – zeichnet die Flamme nach, statt sie zuzumalen. */
+  #fortschritt .flamme .kern { fill: var(--card); opacity: 0.85; }
+
+  /* ab 4 Wochen: kräftiger */
+  #fortschritt .badge.s2 {
+    background: color-mix(in srgb, var(--amber) 22%, transparent);
+    border-color: color-mix(in srgb, var(--amber) 58%, transparent);
+  }
+  /* ab 12 Wochen: voll gefüllt */
+  #fortschritt .badge.s3 {
+    background: var(--amber);
+    border-color: var(--amber);
+    color: var(--auf-amber);
+  }
+  #fortschritt .badge.s3 .flamme .kern { fill: var(--amber); opacity: 0.5; }
+  #fortschritt .balken {
+    height: 8px;
+    border-radius: 999px;
+    background: var(--border);
+    margin: 0.55rem 0 0.5rem;
+    overflow: hidden;
+  }
+  #fortschritt .balken > i {
+    display: block;
+    height: 100%;
+    /* Verlauf: je voller die Woche, desto mehr Amber kommt durch. */
+    background: linear-gradient(90deg, var(--accent), var(--amber));
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
+  #fortschritt .tage {
+    display: flex;
+    gap: 0.35rem;
+    flex-wrap: wrap;
+    font-size: 0.78rem;
+    color: var(--muted);
+  }
+  #fortschritt .tage span {
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.08rem 0.45rem;
+    white-space: nowrap;
+  }
+  #fortschritt .tage span.voll {
+    border-color: var(--accent);
+    color: var(--accent);
+    font-weight: 600;
+  }
+  #fortschritt .hinweis { font-size: 0.8rem; color: var(--muted); padding-top: 0.35rem; }
+  #fortschritt .hinweis.error { color: #d9534f; }
+  #fortschritt button {
+    background: none;
+    border: none;
+    color: var(--accent);
+    text-decoration: underline;
+    cursor: pointer;
+    font-size: inherit;
+    padding: 0;
+  }
+
+  /* Rezeptdetails sitzen im <span> der Mahlzeit-Zeile (sonst bricht das Flex-Layout).
+     Sie dürfen beim Abhaken nicht mit durchgestrichen werden. */
+  #content li.checkitem details.rezept { font-weight: 400; }
+  #content li.checkitem.checked > span { color: var(--muted); }
+  #content li.checkitem.checked details.rezept,
+  #content li.checkitem.checked details.rezept * { text-decoration: none; }
 
   /* Eingabefeld zum Hinzufügen von unterwegs */
   #additem { display: none; margin-bottom: 0.75rem; }
@@ -220,15 +417,21 @@
 </style>
 </head>
 <body>
-<header>
-  <h1>🍽️ Essensplan &amp; Einkaufszettel</h1>
-  <p>Aktuelle Woche · automatisch generiert</p>
-</header>
-
-<nav id="tabs">
-  <button data-file="essensplan" aria-selected="true">Essensplan</button>
-  <button data-file="einkaufszettel" aria-selected="false">Einkaufszettel</button>
-</nav>
+<!-- Kopf: Logo links, daneben Titel, Untertitel und Tabs übereinander.
+     Das Logo überspannt alle drei Zeilen. -->
+<div id="kopf">
+  <span class="logo" role="img" aria-label="Krieger-Emblem"></span>
+  <div class="kopftext">
+    <header>
+      <h1>Essensplan &amp; Einkaufszettel</h1>
+      <p>Aktuelle Woche · automatisch generiert</p>
+    </header>
+    <nav id="tabs">
+      <button data-file="essensplan" aria-selected="true">Essensplan</button>
+      <button data-file="einkaufszettel" aria-selected="false">Einkaufszettel</button>
+    </nav>
+  </div>
+</div>
 
 <main>
   <div id="additem">
@@ -239,6 +442,7 @@
     <div id="addmsg"></div>
     <div id="setup"></div>
   </div>
+  <div id="fortschritt" hidden></div>
   <div id="status">Lade …</div>
   <div id="content" hidden></div>
 </main>
@@ -273,9 +477,41 @@
     } catch (e) { /* ignore (z.B. Safari Private Mode) */ }
   }
 
+  // Eine Detailzeile im Rezept-Dropdown aufbereiten.
+  // "_Zubereitung:_ 1. … 2. …" wird zur nummerierten Liste, damit die Schritte
+  // am Handy einzeln lesbar sind statt als Textblock.
+  function rezeptZeile(roh) {
+    var m = /^_([^_]+):_\s*([\s\S]*)$/.exec(roh);
+    if (!m) return '<p class="zeile">' + inlineText(roh) + "</p>";
+    var titel = m[1], rest = m[2].trim();
+
+    if (/^Zubereitung$/i.test(titel)) {
+      // Vor jeder Zahl mit Punkt trennen; der erste Teil ist meist leer.
+      var schritte = rest.split(/\s*(?=\d+\.\s)/).filter(function (s) { return s.trim(); });
+      if (schritte.length > 1) {
+        return '<p class="titel">' + escapeHtml(titel) + "</p><ol class=\"schritte\">" +
+          schritte.map(function (s) {
+            return "<li>" + inlineText(s.replace(/^\d+\.\s*/, "")) + "</li>";
+          }).join("") + "</ol>";
+      }
+    }
+    return '<p class="titel">' + escapeHtml(titel) + '</p><p class="zeile">' +
+      inlineText(rest) + "</p>";
+  }
+
+  // Inline-Auszeichnung ohne Renderer-Kontext (für Rezeptdetails).
+  function inlineText(text) {
+    text = escapeHtml(text);
+    text = text.replace(/\*\*([^*]+)\*\*/g, "<strong>$1</strong>");
+    text = text.replace(/\*([^*]+)\*/g, "<em>$1</em>");
+    text = text.replace(/`([^`]+)`/g, "<code>$1</code>");
+    return text;
+  }
+
   // Minimaler Markdown-Renderer (Überschriften, Listen, Tabellen, Bold/Links, Absätze)
-  // withCheckboxes: Listenpunkte werden zu anklickbaren Checkboxen (Zustand via localStorage)
-  function renderMarkdown(md, withCheckboxes) {
+  // mode: "" (nur lesen) | "einkauf" (Checkboxen, keine Unterpunkte)
+  //       | "essen" (Checkboxen UND aufklappbare Rezeptdetails)
+  function renderMarkdown(md, mode) {
     var lines = md.replace(/\r\n/g, "\n").split("\n");
     var html = [];
     var i = 0;
@@ -315,35 +551,34 @@
       if (/^\s*-\s+/.test(line)) {
         if (!inList) { html.push("<ul>"); inList = true; }
         var itemText = line.replace(/^\s*-\s+/, "");
-        if (withCheckboxes) {
-          html.push(
-            '<li class="checkitem" data-item="' + escapeHtml(itemText) + '">' +
-            '<input type="checkbox">' +
-            "<span>" + inline(itemText) + "</span>" +
-            "</li>"
-          );
-          i++;
-          continue;
-        }
+        var isTop = !/^\s/.test(line);
 
         // Eingerückte Unterpunkte gehören zu diesem Eintrag (Rezeptdetails).
-        var isTop = !/^\s/.test(line);
+        // Im Einkaufszettel-Modus gibt es keine – dort bleibt alles wie bisher.
         var details = [];
-        if (isTop) {
+        if (isTop && mode !== "einkauf") {
           while (i + 1 < lines.length && /^\s+-\s+/.test(lines[i + 1])) {
             details.push(lines[i + 1].replace(/^\s*-\s+/, ""));
             i++;
           }
         }
-        if (details.length) {
+        var detailsHtml = details.length
+          ? '<details class="rezept"><summary>Zutaten &amp; Zubereitung</summary>' +
+            details.map(rezeptZeile).join("") +
+            "</details>"
+          : "";
+
+        if (mode === "einkauf" || (mode === "essen" && isTop)) {
+          // Details gehören ins <span>: li.checkitem ist ein Flex-Container,
+          // als eigenes Flex-Kind landete das Dropdown neben statt unter dem Text.
           html.push(
-            "<li>" + inline(itemText) +
-            '<details class="rezept"><summary>Rezept anzeigen</summary><ul>' +
-            details.map(function (d) { return "<li>" + inline(d) + "</li>"; }).join("") +
-            "</ul></details></li>"
+            '<li class="checkitem" data-item="' + escapeHtml(itemText) + '">' +
+            '<input type="checkbox">' +
+            "<span>" + inline(itemText) + detailsHtml + "</span>" +
+            "</li>"
           );
         } else {
-          html.push("<li>" + inline(itemText) + "</li>");
+          html.push("<li>" + inline(itemText) + detailsHtml + "</li>");
         }
         i++;
         continue;
@@ -386,8 +621,10 @@
   function candidateNames(kind) {
     var names = [];
     var prefix = kind === "essensplan" ? "Essensplan_Woche_KW" : "Einkaufszettel_Woche_KW";
+    // Der Generator schreibt zweistellig (KW09); ältere Dateien sind einstellig.
     for (var kw = 53; kw >= 1; kw--) {
-      names.push(prefix + kw + ".md");
+      names.push(prefix + (kw < 10 ? "0" + kw : "" + kw) + ".md");
+      if (kw < 10) names.push(prefix + kw + ".md");
     }
     return names;
   }
@@ -435,13 +672,100 @@
     };
   }
 
+  // --- Mahlzeiten-Tracking (Essensplan abhaken) ---
+
+  var WOCHENTAGE = ["Montag", "Dienstag", "Mittwoch", "Donnerstag", "Freitag", "Samstag", "Sonntag"];
+  var SLOTS = ["Frühstück", "Mittag", "Abend", "Snack", "Abendsnack"];
+  var ZIEL_PROZENT = 80;            // ab hier zählt eine Woche für die Serie
+  var TRACKING_DATEI = "Mahlzeiten_Tracking.json";
+
+  function gegessenKey(name) {
+    return "gegessen:" + name;
+  }
+
+  function loadGegessen(name) {
+    try {
+      return JSON.parse(localStorage.getItem(gegessenKey(name)) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveGegessen(name, state) {
+    try {
+      localStorage.setItem(gegessenKey(name), JSON.stringify(state));
+    } catch (e) { /* ignore (z.B. Safari Private Mode) */ }
+  }
+
+  // Tag + Slot aus dem gerenderten DOM ableiten und an die <li> hängen.
+  // Nur echte Mahlzeilen bekommen data-mahl – Intro, Gym-Tage und Fußzeile nicht.
+  function annotateMeals(contentEl) {
+    var tag = null;
+    Array.prototype.forEach.call(contentEl.children, function (el) {
+      if (el.tagName === "H2") {
+        var name = el.textContent.split("(")[0].trim();
+        tag = WOCHENTAGE.indexOf(name) >= 0 ? name : null;
+        return;
+      }
+      if (el.tagName !== "UL" || !tag) return;
+      Array.prototype.forEach.call(el.children, function (li) {
+        if (!li.classList.contains("checkitem")) return;
+        var stark = li.querySelector("span > strong");
+        if (!stark) return;
+        var slot = stark.textContent.replace(/:$/, "").split("(")[0].trim();
+        if (SLOTS.indexOf(slot) < 0) return;
+        li.dataset.tag = tag;
+        li.dataset.slot = slot;
+        li.dataset.mahl = tag + "|" + slot;
+      });
+    });
+    // Übrige Listenpunkte sind keine Mahlzeiten – Checkbox wieder entfernen.
+    Array.prototype.forEach.call(
+      contentEl.querySelectorAll("li.checkitem:not([data-mahl])"),
+      function (li) {
+        var box = li.querySelector('input[type="checkbox"]');
+        if (box) li.removeChild(box);
+        li.classList.remove("checkitem");
+      }
+    );
+  }
+
+  function applyMealChecklist(contentEl, name) {
+    var state = loadGegessen(name);
+    Array.prototype.forEach.call(contentEl.querySelectorAll("li[data-mahl]"), function (li) {
+      if (state[li.dataset.mahl]) {
+        li.classList.add("checked");
+        li.querySelector("input").checked = true;
+      }
+    });
+    contentEl.onclick = function (e) {
+      // Klick auf das Rezept-Dropdown darf nicht als "gegessen" gelten.
+      if (e.target.closest("details.rezept")) return;
+      var li = e.target.closest("li[data-mahl]");
+      if (!li) return;
+      var box = li.querySelector("input");
+      if (e.target !== box) box.checked = !box.checked;
+      li.classList.toggle("checked", box.checked);
+      var s = loadGegessen(name);
+      if (box.checked) s[li.dataset.mahl] = true;
+      else delete s[li.dataset.mahl];
+      saveGegessen(name, s);
+      renderFortschritt();
+      planeCommit();
+    };
+  }
+
   function render(kind, result) {
     var contentEl = document.getElementById("content");
-    var withCheckboxes = kind === "einkaufszettel";
-    contentEl.innerHTML = renderMarkdown(result.text, withCheckboxes);
-    if (withCheckboxes) {
+    var mode = kind === "einkaufszettel" ? "einkauf" : "essen";
+    contentEl.innerHTML = renderMarkdown(result.text, mode);
+    if (mode === "einkauf") {
       applyChecklist(contentEl, result.name);
       markManualItems(contentEl);
+    } else {
+      annotateMeals(contentEl);
+      applyMealChecklist(contentEl, result.name);
+      renderFortschritt();
     }
   }
 
@@ -467,6 +791,151 @@
       contentEl.hidden = false;
       render(kind, result);
     });
+  }
+
+  // --- Wochenbilanz & Serie ---
+
+  var tracking = null;   // Inhalt von Mahlzeiten_Tracking.json (oder null vor dem Laden)
+
+  // ISO-8601-Kalenderwoche (Montag = Wochenstart).
+  function isoWoche(d) {
+    var t = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+    t.setUTCDate(t.getUTCDate() + 4 - (t.getUTCDay() || 7));
+    var jahresstart = new Date(Date.UTC(t.getUTCFullYear(), 0, 1));
+    var woche = Math.ceil(((t - jahresstart) / 86400000 + 1) / 7);
+    return { jahr: t.getUTCFullYear(), woche: woche };
+  }
+
+  function wochenSchluessel(jahr, kw) {
+    return jahr + "-KW" + (kw < 10 ? "0" + kw : "" + kw);
+  }
+
+  // "2026-KW34" aus dem Dateinamen der angezeigten Woche ableiten.
+  function wochenId(name) {
+    var heute = isoWoche(new Date());
+    var m = /KW(\d+)/.exec(name || "");
+    var kw = m ? parseInt(m[1], 10) : heute.woche;
+    var jahr = heute.jahr;
+    // Jahreswechsel: Datei sagt noch KW52, heute ist schon KW01 des Folgejahres.
+    if (kw >= 52 && heute.woche <= 2) jahr -= 1;
+    return wochenSchluessel(jahr, kw);
+  }
+
+  // Ein Jahr hat 53 ISO-Wochen, wenn der 28.12. in KW53 fällt.
+  function wochenImJahr(jahr) {
+    return isoWoche(new Date(jahr, 11, 28)).woche;
+  }
+
+  function vorherigeWoche(id) {
+    var teile = /^(\d+)-KW(\d+)$/.exec(id);
+    if (!teile) return id;
+    var jahr = parseInt(teile[1], 10);
+    var kw = parseInt(teile[2], 10) - 1;
+    if (kw < 1) { jahr -= 1; kw = wochenImJahr(jahr); }
+    return wochenSchluessel(jahr, kw);
+  }
+
+  function ziel() {
+    return (tracking && typeof tracking.ziel === "number") ? tracking.ziel : ZIEL_PROZENT;
+  }
+
+  function wocheGeschafft(rec) {
+    if (!rec || !rec.gesamt) return false;
+    return (rec.gegessen / rec.gesamt) * 100 >= ziel();
+  }
+
+  // Zählt die aktuelle Woche aus dem lokalen Zustand aus.
+  // 'slots' listet die abgehakten Mahlzeiten ("Montag|Mittag") – daraus leitet der
+  // Montagslauf ab, welche Lebensmittel wahrscheinlich verbraucht wurden.
+  function wochenStand(name) {
+    var state = loadGegessen(name);
+    var tage = {};
+    var gegessen = 0;
+    var slots = [];
+    WOCHENTAGE.forEach(function (t) { tage[t] = 0; });
+    Object.keys(state).forEach(function (k) {
+      if (!state[k]) return;
+      var t = k.split("|")[0];
+      if (tage.hasOwnProperty(t)) { tage[t]++; gegessen++; slots.push(k); }
+    });
+    // Stabil sortiert: Wochentag, dann Slot-Reihenfolge – ruhige Diffs im Repo.
+    slots.sort(function (a, b) {
+      var ta = a.split("|"), tb = b.split("|");
+      return (WOCHENTAGE.indexOf(ta[0]) - WOCHENTAGE.indexOf(tb[0])) ||
+             (SLOTS.indexOf(ta[1]) - SLOTS.indexOf(tb[1]));
+    });
+    return {
+      gegessen: gegessen,
+      gesamt: WOCHENTAGE.length * SLOTS.length,
+      tage: tage,
+      slots: slots
+    };
+  }
+
+  // Zusammenhängende Wochen ab der laufenden rückwärts. Die laufende Woche zählt
+  // nur mit, wenn sie das Ziel schon erreicht hat – sie bricht die Serie nicht ab.
+  function berechneSerie(aktuellerStand) {
+    var wochen = (tracking && tracking.wochen) || {};
+    var id = wochenId(files.essensplan && files.essensplan.name);
+    var n = wocheGeschafft(aktuellerStand) ? 1 : 0;
+    id = vorherigeWoche(id);
+    while (wochen[id] && wocheGeschafft(wochen[id])) {
+      n++;
+      id = vorherigeWoche(id);
+    }
+    return n;
+  }
+
+  // Flamme als Inline-SVG statt Emoji: erbt über currentColor die Akzentfarbe
+  // und sieht auf allen Geräten gleich aus (Emoji rendert je nach System anders).
+  var FLAMME =
+    '<svg class="flamme" viewBox="0 0 24 24" aria-hidden="true">' +
+    '<path d="M12 2c.6 3.4-1.2 5-2.8 6.4C7.4 10 6 11.5 6 14a6 6 0 0 0 12 0' +
+    'c0-2.4-1-4.3-2.3-6-.5 1-1.2 1.7-2 2 .4-3.4-1-6.3-3.7-8Z" fill="currentColor"/>' +
+    '<path d="M12 21a3.4 3.4 0 0 1-3.4-3.4c0-2 1.6-3 2.4-4.3.6 1.6 1.8 2 2.7 2.9' +
+    '.6.6 1.7 1.4 1.7 2.8A3.4 3.4 0 0 1 12 21Z" class="kern"/>' +
+    "</svg>";
+
+  // Ab 4 Wochen wird die Anzeige kräftiger – kleine Belohnung fürs Dranbleiben.
+  function serieText(n) {
+    if (n <= 0) return '<span class="leer">Noch keine Serie</span>';
+    var stufe = n >= 12 ? " s3" : n >= 4 ? " s2" : "";
+    return '<span class="badge' + stufe + '">' + FLAMME +
+      "<b>" + n + "</b>" + (n === 1 ? "Woche" : "Wochen") + "</span>";
+  }
+
+  function renderFortschritt() {
+    var el = document.getElementById("fortschritt");
+    var current = files.essensplan;
+    if (!el || !current) return;
+    var s = wochenStand(current.name);
+    var prozent = s.gesamt ? Math.round((s.gegessen / s.gesamt) * 100) : 0;
+
+    var tageHtml = WOCHENTAGE.map(function (t) {
+      var n = s.tage[t];
+      return '<span class="' + (n >= SLOTS.length ? "voll" : "") + '">' +
+        t.slice(0, 2) + " " + n + "/" + SLOTS.length + "</span>";
+    }).join("");
+
+    el.innerHTML =
+      '<div class="zeile">' +
+        '<span class="zahl">' + s.gegessen + "/" + s.gesamt + " Mahlzeiten · " + prozent + "%</span>" +
+        '<span class="serie">' + serieText(berechneSerie(s)) + "</span>" +
+      "</div>" +
+      '<div class="balken"><i style="width:' + prozent + '%"></i></div>' +
+      '<div class="tage">' + tageHtml + "</div>" +
+      '<div class="hinweis" id="trackmsg"></div>' +
+      '<div class="hinweis" id="tracksetup"></div>';
+
+    renderTrackSetup();
+  }
+
+  // #trackmsg wird bei jedem renderFortschritt neu gebaut – nie cachen.
+  function trackMsg(text, isError) {
+    var el = document.getElementById("trackmsg");
+    if (!el) return;
+    el.textContent = text || "";
+    el.classList.toggle("error", !!isError);
   }
 
   // --- Artikel von unterwegs hinzufügen (GitHub Contents API) ---
@@ -630,56 +1099,80 @@
     return li;
   }
 
-  // Gemeinsame Schreiblogik für Hinzufügen und Löschen.
+  // Gemeinsame Schreiblogik für die GitHub Contents API (Lesen → Ändern → Schreiben).
+  // opts: { datei, commitMsg, transform, fehlerText, startInhalt, onBusy, onMeldung, retry }
   // transform(text) -> neuer Text oder null (= nichts zu tun).
-  function updateFile(item, verb, transform, onOk, onFail) {
+  // Gibt den neuen Inhalt zurück, oder null wenn nichts geschrieben wurde.
+  function ghWrite(opts) {
     var token = getToken();
-    var current = files.einkaufszettel;
-    if (!token || !current) return Promise.resolve();
+    if (!token || !opts.datei) return Promise.resolve(null);
 
     var url = "https://api.github.com/repos/" + REPO + "/contents/" +
-      encodeURIComponent(current.name);
+      encodeURIComponent(opts.datei);
+    var melde = opts.onMeldung || function () {};
+    var busy = opts.onBusy || function () {};
+    var versuche = typeof opts.retry === "number" ? opts.retry : 1;
 
-    addBtn.disabled = true;
-    message("Wird gespeichert …");
+    busy(true);
+    melde("Wird gespeichert …");
 
-    // Immer frisch laden: sha und aktueller Stand können sich geändert haben.
-    return fetch(url + "?ref=main&t=" + Date.now(), { headers: ghHeaders(token), cache: "no-store" })
-      .then(function (r) {
-        if (r.status === 401 || r.status === 403) throw new Error("Zugang ungültig oder abgelaufen.");
-        if (!r.ok) throw new Error("Datei nicht gefunden (" + r.status + ").");
-        return r.json();
-      })
-      .then(function (data) {
-        var updated = transform(b64decode(data.content));
-        if (updated === null) throw new Error("„" + item + "“ steht nicht mehr in der Liste.");
-        return fetch(url, {
-          method: "PUT",
-          headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(token)),
-          body: JSON.stringify({
-            message: "Einkaufszettel: " + item + " " + verb,
-            content: b64encode(updated),
-            sha: data.sha,
+    function durchlauf(rest) {
+      // Immer frisch laden: sha und aktueller Stand können sich geändert haben.
+      return fetch(url + "?ref=main&t=" + Date.now(), { headers: ghHeaders(token), cache: "no-store" })
+        .then(function (r) {
+          if (r.status === 401 || r.status === 403) throw new Error("Zugang ungültig oder abgelaufen.");
+          if (r.status === 404) return null;          // Datei gibt es noch nicht
+          if (!r.ok) throw new Error("Datei nicht gefunden (" + r.status + ").");
+          return r.json();
+        })
+        .then(function (data) {
+          var alt = data ? b64decode(data.content) : (opts.startInhalt || "");
+          var neu = opts.transform(alt);
+          if (neu === null) throw new Error(opts.fehlerText || "Nichts zu ändern.");
+          var body = {
+            message: opts.commitMsg,
+            content: b64encode(neu),
             branch: "main"
-          })
-        }).then(function (r) {
-          if (r.status === 409) throw new Error("Gleichzeitige Änderung – bitte nochmal versuchen.");
-          if (!r.ok) throw new Error("Speichern fehlgeschlagen (" + r.status + ").");
-          return updated;
+          };
+          if (data) body.sha = data.sha;
+          return fetch(url, {
+            method: "PUT",
+            headers: Object.assign({ "Content-Type": "application/json" }, ghHeaders(token)),
+            body: JSON.stringify(body)
+          }).then(function (r) {
+            // GitHub meldet einen veralteten sha mal als 409, mal als 422.
+            if (r.status === 409 || r.status === 422) {
+              if (rest > 0) return durchlauf(rest - 1);
+              throw new Error("Gleichzeitige Änderung – bitte nochmal versuchen.");
+            }
+            if (!r.ok) throw new Error("Speichern fehlgeschlagen (" + r.status + ").");
+            return neu;
+          });
         });
-      })
-      .then(function (updated) {
-        files.einkaufszettel.text = updated;
-        if (onOk) onOk();
-        message("„" + item + "“ " + verb + ".");
-      })
-      .catch(function (err) {
-        if (onFail) onFail();
-        message(err.message, true);
-      })
-      .then(function () {
-        addBtn.disabled = !getToken();
-      });
+    }
+
+    return durchlauf(versuche)
+      .then(function (neu) { busy(false); return neu; })
+      .catch(function (err) { busy(false); melde(err.message, true); return null; });
+  }
+
+  // Schreiblogik für Hinzufügen und Löschen auf dem Einkaufszettel.
+  function updateFile(item, verb, transform, onOk, onFail) {
+    var current = files.einkaufszettel;
+    if (!current) return Promise.resolve();
+    return ghWrite({
+      datei: current.name,
+      commitMsg: "Einkaufszettel: " + item + " " + verb,
+      transform: transform,
+      fehlerText: "„" + item + "“ steht nicht mehr in der Liste.",
+      onBusy: function (an) { addBtn.disabled = an ? true : !getToken(); },
+      onMeldung: message
+    }).then(function (neu) {
+      if (neu === null) { if (onFail) onFail(); return; }
+      files.einkaufszettel.text = neu;
+      if (onOk) onOk();
+      message("„" + item + "“ " + verb + ".");
+    });
   }
 
   function addItem(item) {
@@ -731,6 +1224,115 @@
     });
   }
 
+  // --- Wochenbilanz ins Repo schreiben ---
+
+  function serializeTracking(obj) {
+    // Feste Reihenfolge (neueste Woche oben) sorgt für ruhige Diffs.
+    var wochen = {};
+    Object.keys(obj.wochen).sort().reverse().forEach(function (id) {
+      wochen[id] = obj.wochen[id];
+    });
+    return JSON.stringify({
+      version: 1,
+      ziel: obj.ziel || ZIEL_PROZENT,
+      wochen: wochen
+    }, null, 2) + "\n";
+  }
+
+  // Historie klein halten: zwei Jahre reichen für die Serie.
+  function pruneWochen(wochen) {
+    var out = {};
+    Object.keys(wochen).sort().reverse().slice(0, 104).forEach(function (id) {
+      out[id] = wochen[id];
+    });
+    return out;
+  }
+
+  // Ohne Token lesbar: die Datei liegt öffentlich neben der Seite.
+  function ladeTracking() {
+    return fetch(TRACKING_DATEI + "?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .catch(function () { return null; })
+      .then(function (t) {
+        tracking = (t && t.wochen) ? t : { version: 1, ziel: ZIEL_PROZENT, wochen: {} };
+        renderFortschritt();
+      });
+  }
+
+  var commitTimer = null;
+  var commitLaeuft = false;
+  var nochmal = false;
+  var COMMIT_VERZOEGERUNG = 2500;   // ms – schnell gesetzte Häkchen werden gebündelt
+
+  function planeCommit() {
+    if (!getToken()) { trackMsg("Nur lokal gespeichert (nicht verbunden)."); return; }
+    if (commitTimer) clearTimeout(commitTimer);
+    trackMsg("Wird gleich gespeichert …");
+    commitTimer = setTimeout(function () {
+      commitTimer = null;
+      commitTracking();
+    }, COMMIT_VERZOEGERUNG);
+  }
+
+  function commitTracking() {
+    if (commitLaeuft) { nochmal = true; return Promise.resolve(); }
+    var current = files.essensplan;
+    if (!current || !getToken()) return Promise.resolve();
+    commitLaeuft = true;
+    var id = wochenId(current.name);
+    var stand = wochenStand(current.name);
+
+    return ghWrite({
+      datei: TRACKING_DATEI,
+      startInhalt: serializeTracking({ ziel: ZIEL_PROZENT, wochen: {} }),
+      commitMsg: "Mahlzeiten " + id + ": " + stand.gegessen + "/" + stand.gesamt,
+      retry: 2,
+      transform: function (text) {
+        var obj;
+        try { obj = JSON.parse(text); } catch (e) { obj = null; }
+        if (!obj || !obj.wochen) obj = { version: 1, ziel: ZIEL_PROZENT, wochen: {} };
+        obj.wochen[id] = stand;              // laufende Woche ersetzen
+        obj.wochen = pruneWochen(obj.wochen);
+        return serializeTracking(obj);
+      },
+      onMeldung: trackMsg
+    }).then(function (neu) {
+      commitLaeuft = false;
+      if (neu !== null) {
+        try { tracking = JSON.parse(neu); } catch (e) { /* ignore */ }
+        renderFortschritt();
+        trackMsg("Gespeichert.");
+      }
+      if (nochmal) { nochmal = false; return commitTracking(); }
+    });
+  }
+
+  // Token-Zeile im Essensplan-Tab (#setup liegt im ausgeblendeten #additem).
+  function renderTrackSetup() {
+    var el = document.getElementById("tracksetup");
+    if (!el) return;
+    el.innerHTML = "";
+    var btn = document.createElement("button");
+    btn.type = "button";
+    if (getToken()) {
+      el.appendChild(document.createTextNode("Gerät verbunden · "));
+      btn.textContent = "Zugang entfernen";
+      btn.onclick = function () { setToken(""); renderFortschritt(); };
+    } else {
+      el.appendChild(document.createTextNode("Nur auf diesem Gerät gespeichert · "));
+      btn.textContent = "Gerät verbinden";
+      btn.onclick = function () {
+        var t = prompt("GitHub Fine-grained Token einfügen (wird nur auf diesem Gerät gespeichert):");
+        if (t && t.trim()) {
+          setToken(t.trim());
+          renderFortschritt();
+          commitTracking();      // aktuellen Stand direkt nachtragen
+        }
+      };
+    }
+    el.appendChild(btn);
+  }
+
   addForm.addEventListener("submit", function (e) {
     e.preventDefault();
     var item = addInput.value.trim();
@@ -741,6 +1343,7 @@
 
   function updateAddVisibility(kind) {
     addEl.classList.toggle("visible", kind === "einkaufszettel");
+    document.getElementById("fortschritt").hidden = kind !== "essensplan";
     if (kind === "einkaufszettel") { message(""); renderSetup(); }
   }
 
@@ -756,6 +1359,7 @@
   });
 
   updateAddVisibility("essensplan");
+  ladeTracking();
   show("essensplan");
 })();
 </script>
