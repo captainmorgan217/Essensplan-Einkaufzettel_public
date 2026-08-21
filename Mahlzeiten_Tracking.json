@@ -1,0 +1,23 @@
+{
+  "version": 1,
+  "ziel": 80,
+  "wochen": {
+    "2026-KW34": {
+      "gegessen": 2,
+      "gesamt": 35,
+      "tage": {
+        "Montag": 2,
+        "Dienstag": 0,
+        "Mittwoch": 0,
+        "Donnerstag": 0,
+        "Freitag": 0,
+        "Samstag": 0,
+        "Sonntag": 0
+      },
+      "slots": [
+        "Montag|Frühstück",
+        "Montag|Mittag"
+      ]
+    }
+  }
+}
