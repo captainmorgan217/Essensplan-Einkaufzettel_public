@@ -51,6 +51,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 - TK Beeren
 - Mandelmuß
 - Eier
+- Bananen
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
