@@ -52,6 +52,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 - Mandelmuß
 - Eier
 - Bananen
+- Sardellen
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
