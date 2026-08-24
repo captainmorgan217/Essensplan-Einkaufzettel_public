@@ -2,6 +2,19 @@
   "version": 1,
   "ziel": 80,
   "wochen": {
+    "2026-KW35": {
+      "gegessen": 0,
+      "gesamt": 35,
+      "tage": {
+        "Montag": 0,
+        "Dienstag": 0,
+        "Mittwoch": 0,
+        "Donnerstag": 0,
+        "Freitag": 0,
+        "Samstag": 0,
+        "Sonntag": 0
+      }
+    },
     "2026-KW34": {
       "gegessen": 1,
       "gesamt": 35,
