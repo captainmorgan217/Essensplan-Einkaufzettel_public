@@ -48,7 +48,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 
 ## Manuell hinzugefügt
 - Avocados
-- Zimt
 - TK Beeren
 - Mandelmuß
 
