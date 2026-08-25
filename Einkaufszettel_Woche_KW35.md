@@ -42,7 +42,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 ## Manuell hinzugefügt
 - TK Beeren
 - Mandelmuß
-- Eier
 - Bananen
 - Sardellen
 
