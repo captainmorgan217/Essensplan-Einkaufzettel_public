@@ -3,11 +3,11 @@
   "ziel": 80,
   "wochen": {
     "2026-KW35": {
-      "gegessen": 6,
+      "gegessen": 8,
       "gesamt": 35,
       "tage": {
         "Montag": 4,
-        "Dienstag": 2,
+        "Dienstag": 4,
         "Mittwoch": 0,
         "Donnerstag": 0,
         "Freitag": 0,
@@ -20,7 +20,9 @@
         "Montag|Snack",
         "Montag|Abendsnack",
         "Dienstag|Frühstück",
-        "Dienstag|Mittag"
+        "Dienstag|Mittag",
+        "Dienstag|Snack",
+        "Dienstag|Abendsnack"
       ]
     },
     "2026-KW34": {
