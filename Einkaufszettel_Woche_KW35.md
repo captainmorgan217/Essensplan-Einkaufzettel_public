@@ -40,7 +40,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
-- TK Beeren
 - Mandelmuß
 - Bananen
 - Sardellen
