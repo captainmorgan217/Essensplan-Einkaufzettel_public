@@ -1,30 +1,35 @@
 # Einkaufszettel – Woche
 
-Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
+Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW36.md`).
 
 ## Obst & Gemüse
 - Beeren (TK & frisch)
 - Birnen
+- Champignons
+- Granatapfel(-kerne)
 - Karotten
+- Kresse
 - Paprika
-- Pfirsiche
+- Salat (Kopfsalat/Blattsalat)
 - Spinat (frisch/TK)
 - Süßkartoffeln
 - Äpfel
 
 ## Kühlregal / Milchprodukte
+- Feta light
 - Griechischer Joghurt
 - Magerquark
 - Milch
 - Sojamilch
 
 ## Fleisch & Fisch
-- Fisch (weiß, nach Wahl)
+- Hühnchenbrust
+- Lachsfilet
 - Rinderhack (für Fleischküchle)
+- Steak (optional, Sonntag)
+- Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
-- Kidneybohnen
-- Reiswaffeln
 - Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
@@ -35,8 +40,8 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 - Leinsamen
 - Mandeln
 - Pistazien
+- Sesam
 - Sonnenblumenkerne
-- Tahin
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
@@ -47,4 +52,3 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW35.md`).
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
-*Einkauf vom 24.08.2026 (ALDI SÜD) wurde bereits abgehakt.*
