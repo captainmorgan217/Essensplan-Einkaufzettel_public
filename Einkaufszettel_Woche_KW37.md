@@ -1,16 +1,14 @@
 # Einkaufszettel – Woche
 
-Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW36.md`).
+Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW37.md`).
 
 ## Obst & Gemüse
 - Beeren (TK & frisch)
 - Birnen
 - Champignons
-- Granatapfel(-kerne)
 - Karotten
-- Kresse
 - Paprika
-- Salat (Kopfsalat/Blattsalat)
+- Pfirsiche
 - Spinat (frisch/TK)
 - Süßkartoffeln
 - Äpfel
@@ -24,12 +22,12 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW36.md`).
 
 ## Fleisch & Fisch
 - Hühnchenbrust
-- Lachsfilet
 - Rinderhack (für Fleischküchle)
-- Steak (optional, Sonntag)
 - Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
+- Kidneybohnen
+- Reiswaffeln
 - Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
