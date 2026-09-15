@@ -48,7 +48,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
-- Mandelmuß
 - Bananen
 - Sardellen
 - Bitter
