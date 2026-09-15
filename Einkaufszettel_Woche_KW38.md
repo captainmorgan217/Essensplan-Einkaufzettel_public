@@ -51,6 +51,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
 - Bananen
 - Sardellen
 - Butter
+- Tomaten gehackt
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
