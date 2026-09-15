@@ -52,6 +52,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
 - Sardellen
 - Butter
 - Tomaten gehackt
+- Koko Milch
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
