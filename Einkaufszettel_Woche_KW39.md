@@ -1,14 +1,14 @@
 # Einkaufszettel – Woche
 
-Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
+Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW39.md`).
 
 ## Obst & Gemüse
 - Beeren (TK & frisch)
 - Birnen
 - Champignons
-- Gurke
 - Karotten
 - Paprika
+- Pfirsiche
 - Salat (Kopfsalat/Blattsalat)
 - Spinat (frisch/TK)
 - Süßkartoffeln
@@ -16,11 +16,9 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
 
 ## Kühlregal / Milchprodukte
 - Feta light
-- Frischkäse (körnig, light)
 - Griechischer Joghurt
 - Magerquark
 - Milch
-- Reibekäse light
 - Sojamilch
 
 ## Fleisch & Fisch
@@ -31,9 +29,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW38.md`).
 
 ## Trockenware / Getreide / Hülsenfrüchte
 - Kidneybohnen
-- Quinoa
 - Reiswaffeln
-- Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
 
