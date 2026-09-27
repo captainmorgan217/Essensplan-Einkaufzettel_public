@@ -4,6 +4,8 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Essensplan &amp; Einkaufszettel</title>
+<link rel="icon" type="image/png" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <style>
   :root {
     color-scheme: light dark;
@@ -67,25 +69,26 @@
   /* Schmale Geräte: Titel etwas kleiner, damit Logo und Text nebeneinander passen. */
   @media (max-width: 400px) {
     #kopf { gap: 0.7rem; padding: 0.85rem 0.75rem 0.35rem; }
-    #kopf .logo { width: 5.4rem; height: 5.4rem; }
+    #kopf .logo { width: 3rem; height: 5.4rem; }
     header h1 { font-size: 1.15rem; }
     header p { font-size: 0.82rem; }
   }
-  /* Bleistiftzeichnung als Maske: Deckkraft aus dem Bild, Farbe aus dem CSS –
+  /* Arnold-Silhouette als Maske: Deckkraft aus dem Bild, Farbe aus dem CSS –
      dadurch bleibt sie hell wie dunkel lesbar.
-     Feste Breite/Höhe: ein leeres <span> mit nur aspect-ratio bekäme Breite 0. */
+     Feste Breite/Höhe: ein leeres <span> mit nur aspect-ratio bekäme Breite 0.
+     Breite passend zum Hochformat der Figur (ca. 0,55 : 1). */
   #kopf .logo {
     flex: none;
-    width: 6.4rem;
+    width: 3.6rem;
     height: 6.4rem;
     background: var(--amber);
-    -webkit-mask: url("conan.png") no-repeat center / contain;
-    mask: url("conan.png") no-repeat center / contain;
+    -webkit-mask: url("arnold.png") no-repeat center / contain;
+    mask: url("arnold.png") no-repeat center / contain;
   }
   /* Ohne Maskenunterstützung (sehr alte Browser): Bild direkt zeigen. */
   @supports not ((-webkit-mask: url("")) or (mask: url(""))) {
     #kopf .logo {
-      background: url("conan.png") no-repeat center / contain;
+      background: url("arnold.png") no-repeat center / contain;
       opacity: 0.8;
     }
   }
@@ -121,6 +124,14 @@
     margin: 0 auto;
     padding: 0.5rem 1rem 3rem;
   }
+  /* Laptop/Desktop: am Handy passt die Größe, am großen Bildschirm wirkte alles
+     klein und die Spalte schmal. Größere Basisschrift skaliert alle rem-Maße mit
+     (Text, Logo, Abstände); die Spalte wird breiter. Handys bleiben unverändert. */
+  @media (min-width: 1000px) {
+    html { font-size: 18px; }
+    main { max-width: 860px; }
+    #kopf .logo { width: 4.5rem; height: 8rem; }
+  }
   #content {
     background: var(--card);
     border: 1px solid var(--border);
@@ -135,6 +146,56 @@
     margin-top: 1.2rem;
   }
   #content h2:first-child { border-top: none; padding-top: 0; margin-top: 0; }
+  /* Wochentage im Essensplan zum Auf- und Zuklappen. Der Trennstrich wandert von
+     der Überschrift auf den ganzen Abschnitt, weil die h2 jetzt im <summary> steckt. */
+  #content details.tag {
+    border-top: 1px solid var(--border);
+    margin-top: 0.4rem;
+  }
+  #content details.tag > summary {
+    list-style: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 0;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #content details.tag > summary::-webkit-details-marker { display: none; }
+  #content details.tag > summary::before {
+    content: "▸";
+    color: var(--muted);
+    font-size: 0.9rem;
+    width: 0.8rem;
+    flex: none;
+  }
+  #content details.tag[open] > summary::before { content: "▾"; }
+  #content details.tag > summary h2 {
+    border-top: none;
+    padding-top: 0;
+    margin: 0;
+    font-size: 1.15rem;
+    flex: 1;
+  }
+  #content details.tag > summary .tagstand {
+    flex: none;
+    font-size: 0.8rem;
+    color: var(--muted);
+    border: 1px solid var(--border);
+    border-radius: 999px;
+    padding: 0.1rem 0.55rem;
+  }
+  #content details.tag > summary .tagstand.voll {
+    color: var(--amber);
+    border-color: var(--amber-rand);
+    background: var(--amber-weich);
+  }
+  #content details.tag > summary .heute {
+    color: var(--amber);
+    font-weight: 600;
+    font-size: 0.8rem;
+  }
+  #content details.tag > ul { margin-top: 0; }
   #content li.checkitem {
     list-style: none;
     display: flex;
@@ -316,7 +377,10 @@
     border-radius: 999px;
     padding: 0.08rem 0.45rem;
     white-space: nowrap;
+    cursor: pointer;
+    -webkit-tap-highlight-color: transparent;
   }
+  #fortschritt .tage span:hover { border-color: var(--amber-rand); }
   #fortschritt .tage span.voll {
     border-color: var(--accent);
     color: var(--accent);
@@ -420,7 +484,7 @@
 <!-- Kopf: Logo links, daneben Titel, Untertitel und Tabs übereinander.
      Das Logo überspannt alle drei Zeilen. -->
 <div id="kopf">
-  <span class="logo" role="img" aria-label="Krieger-Emblem"></span>
+  <span class="logo" role="img" aria-label="Arnold-Silhouette"></span>
   <div class="kopftext">
     <header>
       <h1>Essensplan &amp; Einkaufszettel</h1>
@@ -746,6 +810,7 @@
       var box = li.querySelector("input");
       if (e.target !== box) box.checked = !box.checked;
       li.classList.toggle("checked", box.checked);
+      aktualisiereTagstand(contentEl);
       var s = loadGegessen(name);
       if (box.checked) s[li.dataset.mahl] = true;
       else delete s[li.dataset.mahl];
@@ -753,6 +818,70 @@
       renderFortschritt();
       planeCommit();
     };
+  }
+
+  // Welche Tage aufgeklappt sind. Startwert: nur heute. Bleibt über Neu-Rendern
+  // (Tabwechsel, Sync) erhalten, solange die Seite offen ist.
+  var offeneTage = null;
+
+  function heutigerWochentag() {
+    return WOCHENTAGE[(new Date().getDay() + 6) % 7];   // getDay: 0 = Sonntag
+  }
+
+  // Jeden Wochentag (h2 + folgende Listen) in ein <details> packen, damit man
+  // z.B. direkt zu Freitag springen kann, ohne an allen Tagen vorbeizuscrollen.
+  // Läuft nach annotateMeals, das die h2 noch als direkte Kinder erwartet.
+  function faltbareTage(contentEl) {
+    if (!offeneTage) offeneTage = [heutigerWochentag()];
+    var heute = heutigerWochentag();
+    Array.prototype.slice.call(contentEl.children).forEach(function (el) {
+      if (el.tagName !== "H2") return;
+      var tag = el.textContent.split("(")[0].trim();
+      if (WOCHENTAGE.indexOf(tag) < 0) return;
+
+      var det = document.createElement("details");
+      det.className = "tag";
+      det.dataset.tag = tag;
+      if (offeneTage.indexOf(tag) >= 0) det.open = true;
+      var sum = document.createElement("summary");
+      contentEl.insertBefore(det, el);
+      sum.appendChild(el);
+      if (tag === heute) {
+        var h = document.createElement("span");
+        h.className = "heute";
+        h.textContent = "heute";
+        sum.appendChild(h);
+      }
+      var stand = document.createElement("span");
+      stand.className = "tagstand";
+      sum.appendChild(stand);
+      det.appendChild(sum);
+
+      // Alles bis zur nächsten Überschrift gehört zum Tag (nur Listen – die
+      // Fußzeile mit dem Einkaufszettel-Hinweis bleibt draußen).
+      while (det.nextElementSibling && det.nextElementSibling.tagName === "UL") {
+        det.appendChild(det.nextElementSibling);
+      }
+
+      det.addEventListener("toggle", function () {
+        var i = offeneTage.indexOf(tag);
+        if (det.open && i < 0) offeneTage.push(tag);
+        if (!det.open && i >= 0) offeneTage.splice(i, 1);
+      });
+    });
+    aktualisiereTagstand(contentEl);
+  }
+
+  // "3/5" je Tag in der Überschrift – sichtbar auch bei zugeklappten Tagen.
+  function aktualisiereTagstand(contentEl) {
+    Array.prototype.forEach.call(contentEl.querySelectorAll("details.tag"), function (det) {
+      var alle = det.querySelectorAll("li[data-mahl]").length;
+      var erledigt = det.querySelectorAll("li[data-mahl].checked").length;
+      var stand = det.querySelector("summary .tagstand");
+      if (!stand) return;
+      stand.textContent = erledigt + "/" + alle;
+      stand.classList.toggle("voll", alle > 0 && erledigt === alle);
+    });
   }
 
   function render(kind, result) {
@@ -765,6 +894,7 @@
     } else {
       annotateMeals(contentEl);
       applyMealChecklist(contentEl, result.name);
+      faltbareTage(contentEl);
       renderFortschritt();
     }
   }
@@ -913,7 +1043,8 @@
 
     var tageHtml = WOCHENTAGE.map(function (t) {
       var n = s.tage[t];
-      return '<span class="' + (n >= SLOTS.length ? "voll" : "") + '">' +
+      return '<span class="' + (n >= SLOTS.length ? "voll" : "") + '" data-sprung="' + t +
+        '" role="button" tabindex="0" title="Zu ' + t + ' springen">' +
         t.slice(0, 2) + " " + n + "/" + SLOTS.length + "</span>";
     }).join("");
 
@@ -929,6 +1060,30 @@
 
     renderTrackSetup();
   }
+
+  // Tipp auf "Fr 2/5" in der Fortschritts-Karte: Freitag aufklappen und hinscrollen.
+  // Delegiert auf #fortschritt, weil dessen Inhalt bei jedem Abhaken neu gebaut wird.
+  function springeZuTag(tag) {
+    var det = document.querySelector('#content details.tag[data-tag="' + tag + '"]');
+    if (!det) return;
+    det.open = true;
+    det.scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+  (function () {
+    var el = document.getElementById("fortschritt");
+    if (!el) return;
+    el.addEventListener("click", function (e) {
+      var chip = e.target.closest("[data-sprung]");
+      if (chip) springeZuTag(chip.dataset.sprung);
+    });
+    el.addEventListener("keydown", function (e) {
+      var chip = e.target.closest("[data-sprung]");
+      if (chip && (e.key === "Enter" || e.key === " ")) {
+        e.preventDefault();
+        springeZuTag(chip.dataset.sprung);
+      }
+    });
+  })();
 
   // #trackmsg wird bei jedem renderFortschritt neu gebaut – nie cachen.
   function trackMsg(text, isError) {
