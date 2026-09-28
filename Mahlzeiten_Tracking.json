@@ -3,10 +3,10 @@
   "ziel": 80,
   "wochen": {
     "2026-KW40": {
-      "gegessen": 4,
+      "gegessen": 3,
       "gesamt": 35,
       "tage": {
-        "Montag": 4,
+        "Montag": 3,
         "Dienstag": 0,
         "Mittwoch": 0,
         "Donnerstag": 0,
@@ -15,7 +15,6 @@
         "Sonntag": 0
       },
       "slots": [
-        "Montag|Frühstück",
         "Montag|Abend",
         "Montag|Snack",
         "Montag|Abendsnack"
