@@ -59,6 +59,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 - Butter
 - Tomaten gehackt
 - Koko Milch
+- gdfgfdgdfgdfg
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
