@@ -56,7 +56,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 ## Manuell hinzugefügt
 - Bananen
 - Sardellen
-- Butter
 - Koko Milch
 
 ---
