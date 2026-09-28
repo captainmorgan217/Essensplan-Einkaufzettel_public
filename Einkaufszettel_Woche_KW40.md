@@ -60,7 +60,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 - Tomaten gehackt
 - Koko Milch
 - gdfgfdgdfgdfg
-- Blubbbb
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
