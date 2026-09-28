@@ -54,7 +54,6 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
-- Koko Milch
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
