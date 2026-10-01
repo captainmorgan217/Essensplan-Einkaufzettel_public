@@ -47,7 +47,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 
 ## Nüsse & Samen
 - Chiasamen
-- Erdnussmus
+- Mandelmus
 - Kürbiskerne
 - Leinsamen
 - Mandeln
