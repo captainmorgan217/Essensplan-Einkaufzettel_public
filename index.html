@@ -72,6 +72,9 @@
     #kopf .logo { width: 3rem; height: 5.4rem; }
     header h1 { font-size: 1.15rem; }
     header p { font-size: 0.82rem; }
+    /* Drei Tabs sollen neben dem Logo in eine Zeile passen. */
+    nav { gap: 0.35rem; }
+    nav button { padding: 0.45rem 0.7rem; font-size: 0.82rem; }
   }
   /* Arnold-Silhouette als Maske: Deckkraft aus dem Bild, Farbe aus dem CSS –
      dadurch bleibt sie hell wie dunkel lesbar.
@@ -300,6 +303,27 @@
     text-align: center;
   }
 
+  /* Nährwerte direkt unter der Mahlzeit. inline-block: so erbt die Zeile das
+     Durchstreichen der abgehakten Mahlzeit nicht – die Zahlen bleiben lesbar. */
+  #content .makros {
+    display: inline-block;
+    width: 100%;
+    font-size: 0.78rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  #content .tagessumme {
+    margin: -0.3rem 0 0.8rem;
+    font-size: 0.8rem;
+    color: var(--muted);
+    padding-left: 0.75rem;
+    border-left: 2px solid var(--amber-rand);
+  }
+  #content .tagessumme b { color: var(--fg); font-weight: 600; }
+
+  /* Training: abgehakte Alternative macht die anderen Optionen des Tages blass. */
+  #content li.checkitem.alternative > span { color: var(--muted); opacity: 0.6; }
+
   #status { text-align: center; color: var(--muted); padding: 2rem 1rem; }
 
   /* Fortschritt & Serie – Belohnung fürs Abhaken der Mahlzeiten */
@@ -386,6 +410,53 @@
     color: var(--accent);
     font-weight: 600;
   }
+  /* Tagesbilanz Nährwerte: dunkler Balken = gegessen, heller = laut Plan noch offen */
+  #fortschritt .makros-heute {
+    border-top: 1px solid var(--border);
+    margin-top: 0.7rem;
+    padding-top: 0.6rem;
+  }
+  #fortschritt .mh-kopf {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.5rem;
+    font-size: 0.85rem;
+    margin-bottom: 0.35rem;
+  }
+  #fortschritt .mh-kopf .leise { color: var(--muted); font-size: 0.78rem; }
+  #fortschritt .mh-zeile {
+    display: grid;
+    grid-template-columns: 4.6rem 1fr auto;
+    align-items: center;
+    gap: 0.6rem;
+    font-size: 0.8rem;
+    padding: 0.12rem 0;
+  }
+  #fortschritt .mh-name { color: var(--muted); }
+  #fortschritt .mh-wert {
+    font-variant-numeric: tabular-nums;
+    text-align: right;
+    min-width: 6.5rem;
+  }
+  #fortschritt .mh-wert.drueber { color: var(--amber); font-weight: 600; }
+  #fortschritt .mh-balken {
+    position: relative;
+    height: 6px;
+    border-radius: 999px;
+    background: var(--border);
+    overflow: hidden;
+  }
+  #fortschritt .mh-balken i {
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    border-radius: 999px;
+    transition: width 0.25s ease;
+  }
+  #fortschritt .mh-balken i.geplant { background: color-mix(in srgb, var(--accent) 30%, transparent); }
+  #fortschritt .mh-balken i.gegessen { background: var(--accent); }
+  #fortschritt .mh-fuss { font-size: 0.75rem; color: var(--muted); padding-top: 0.3rem; }
   #fortschritt .hinweis { font-size: 0.8rem; color: var(--muted); padding-top: 0.35rem; }
   #fortschritt .hinweis.error { color: #d9534f; }
   #fortschritt button {
@@ -403,7 +474,11 @@
   #content li.checkitem details.rezept { font-weight: 400; }
   #content li.checkitem.checked > span { color: var(--muted); }
   #content li.checkitem.checked details.rezept,
-  #content li.checkitem.checked details.rezept * { text-decoration: none; }
+  #content li.checkitem.checked details.rezept *,
+  #content li.checkitem.checked .makros { text-decoration: none; }
+  /* Durchstreichen vererbt sich trotz text-decoration: none auf Blöcke im
+     <span> weiter – nur inline-block unterbricht das. */
+  #content li.checkitem details.rezept { display: inline-block; width: 100%; }
 
   /* Eingabefeld zum Hinzufügen von unterwegs */
   #additem { display: none; margin-bottom: 0.75rem; }
@@ -493,6 +568,7 @@
     <nav id="tabs">
       <button data-file="essensplan" aria-selected="true">Essensplan</button>
       <button data-file="einkaufszettel" aria-selected="false">Einkaufszettel</button>
+      <button data-file="training" aria-selected="false">Training</button>
     </nav>
   </div>
 </div>
@@ -626,23 +702,32 @@
             i++;
           }
         }
+        // Die Nährwerte-Zeile steht sichtbar unter der Mahlzeit, nicht im Dropdown.
+        var nw = null;
+        details = details.filter(function (d) {
+          if (!/^_Nährwerte:_/.test(d)) return true;
+          nw = parseNaehrwerte(d);
+          return false;
+        });
+        var nwHtml = nw ? '<span class="makros">' + makroText(nw) + "</span>" : "";
         var detailsHtml = details.length
-          ? '<details class="rezept"><summary>Zutaten &amp; Zubereitung</summary>' +
+          ? '<details class="rezept"><summary>' +
+            (mode === "training" ? "Details" : "Zutaten &amp; Zubereitung") + "</summary>" +
             details.map(rezeptZeile).join("") +
             "</details>"
           : "";
 
-        if (mode === "einkauf" || (mode === "essen" && isTop)) {
+        if (mode === "einkauf" || ((mode === "essen" || mode === "training") && isTop)) {
           // Details gehören ins <span>: li.checkitem ist ein Flex-Container,
           // als eigenes Flex-Kind landete das Dropdown neben statt unter dem Text.
           html.push(
             '<li class="checkitem" data-item="' + escapeHtml(itemText) + '">' +
             '<input type="checkbox">' +
-            "<span>" + inline(itemText) + detailsHtml + "</span>" +
+            "<span>" + inline(itemText) + nwHtml + detailsHtml + "</span>" +
             "</li>"
           );
         } else {
-          html.push("<li>" + inline(itemText) + detailsHtml + "</li>");
+          html.push("<li>" + inline(itemText) + nwHtml + detailsHtml + "</li>");
         }
         i++;
         continue;
@@ -677,14 +762,84 @@
     return html.join("\n");
   }
 
+  // --- Nährwerte ---
+
+  // Liest "_Nährwerte:_ 520 kcal · 44 g Eiweiß · 65 g KH · 7 g Fett" (so schreibt
+  // es der Generator, siehe naehrwerte_zeile in generate_essensplan.py).
+  function parseNaehrwerte(text) {
+    var m = /(\d+)\s*kcal\D+?(\d+)\s*g Eiweiß\D+?(\d+)\s*g KH\D+?(\d+)\s*g Fett/.exec(text || "");
+    if (!m) return null;
+    return { kcal: +m[1], eiweiss: +m[2], kohlenhydrate: +m[3], fett: +m[4] };
+  }
+
+  function zahl(n) {
+    return Math.round(n).toLocaleString("de-DE");
+  }
+
+  function makroText(nw) {
+    return zahl(nw.kcal) + " kcal · " + zahl(nw.eiweiss) + " g Eiweiß · " +
+      zahl(nw.kohlenhydrate) + " g KH · " + zahl(nw.fett) + " g Fett";
+  }
+
+  function leereSumme() {
+    return { kcal: 0, eiweiss: 0, kohlenhydrate: 0, fett: 0 };
+  }
+
+  function addiere(summe, nw) {
+    Object.keys(summe).forEach(function (k) { summe[k] += nw[k] || 0; });
+    return summe;
+  }
+
+  // Nährwerte je Mahlzeit aus dem Plan-Markdown: { Montag: { ruhetag, mahlzeiten: { Mittag: {...} } } }.
+  // Aus dem Text statt aus dem DOM, damit die Bilanz auch bei anderem Tab stimmt.
+  function naehrwertePlan(text) {
+    var tage = {};
+    var tag = null, slot = null;
+    (text || "").replace(/\r\n/g, "\n").split("\n").forEach(function (l) {
+      var h = /^##\s+(\S+)\s*(?:\((.*)\))?/.exec(l);
+      if (h) {
+        tag = WOCHENTAGE.indexOf(h[1]) >= 0 ? h[1] : null;
+        // "kein Gym" steht noch in älteren Plänen.
+        if (tag) tage[tag] = { ruhetag: /Ruhetag|kein Gym/i.test(h[2] || ""), mahlzeiten: {} };
+        slot = null;
+        return;
+      }
+      var m = /^-\s+\*\*([^:*]+):\*\*/.exec(l);
+      if (m) { slot = m[1].split("(")[0].trim(); return; }
+      if (!/^\s+-/.test(l)) { if (/^-\s/.test(l)) slot = null; return; }
+      var nw = parseNaehrwerte(l);
+      if (nw && tag && slot) tage[tag].mahlzeiten[slot] = nw;
+    });
+    return tage;
+  }
+
+  // Tagesziele: aus Mahlzeiten_Tracking.json ("tagesziele"), sonst diese Startwerte.
+  // An Trainingstagen mehr Kohlenhydrate, Eiweiß bleibt gleich.
+  var STANDARD_ZIELE = {
+    training: { kcal: 2300, eiweiss: 150, kohlenhydrate: 260, fett: 70 },
+    ruhetag: { kcal: 2100, eiweiss: 150, kohlenhydrate: 210, fett: 70 }
+  };
+
+  function tagesziel(ruhetag) {
+    var z = (tracking && tracking.tagesziele) || STANDARD_ZIELE;
+    return (ruhetag ? z.ruhetag : z.training) || STANDARD_ZIELE[ruhetag ? "ruhetag" : "training"];
+  }
+
   var files = {
     essensplan: null,
-    einkaufszettel: null
+    einkaufszettel: null,
+    training: null
+  };
+
+  var DATEI_PREFIX = {
+    essensplan: "Essensplan_Woche_KW",
+    einkaufszettel: "Einkaufszettel_Woche_KW",
+    training: "Trainingsplan_Woche_KW"
   };
 
   function candidateNames(kind) {
     var names = [];
-    var prefix = kind === "essensplan" ? "Essensplan_Woche_KW" : "Einkaufszettel_Woche_KW";
+    var prefix = DATEI_PREFIX[kind];
     // Der Generator schreibt zweistellig (KW09); ältere Dateien sind einstellig.
     for (var kw = 53; kw >= 1; kw--) {
       names.push(prefix + (kw < 10 ? "0" + kw : "" + kw) + ".md");
@@ -863,6 +1018,18 @@
         det.appendChild(det.nextElementSibling);
       }
 
+      // Geplante Tagessumme unter den Mahlzeiten (nur im Essensplan).
+      var plan = files.essensplan && contentEl.dataset.modus === "essen" &&
+        naehrwertePlan(files.essensplan.text)[tag];
+      if (plan && Object.keys(plan.mahlzeiten).length) {
+        var summe = leereSumme();
+        Object.keys(plan.mahlzeiten).forEach(function (s) { addiere(summe, plan.mahlzeiten[s]); });
+        var p = document.createElement("p");
+        p.className = "tagessumme";
+        p.innerHTML = "<b>Tag gesamt:</b> " + makroText(summe);
+        det.appendChild(p);
+      }
+
       det.addEventListener("toggle", function () {
         var i = offeneTage.indexOf(tag);
         if (det.open && i < 0) offeneTage.push(tag);
@@ -873,24 +1040,152 @@
   }
 
   // "3/5" je Tag in der Überschrift – sichtbar auch bei zugeklappten Tagen.
+  // Training: "erledigt", sobald eine der Alternativen abgehakt ist; Ruhetage: "Pause".
   function aktualisiereTagstand(contentEl) {
     Array.prototype.forEach.call(contentEl.querySelectorAll("details.tag"), function (det) {
-      var alle = det.querySelectorAll("li[data-mahl]").length;
-      var erledigt = det.querySelectorAll("li[data-mahl].checked").length;
       var stand = det.querySelector("summary .tagstand");
       if (!stand) return;
+      var einheiten = det.querySelectorAll("li[data-einheit]").length;
+      if (contentEl.dataset.modus === "training") {
+        var fertig = det.querySelectorAll("li[data-einheit].checked").length > 0;
+        stand.textContent = !einheiten ? "Pause" : fertig ? "✓ erledigt" : "offen";
+        stand.classList.toggle("voll", fertig);
+        return;
+      }
+      var alle = det.querySelectorAll("li[data-mahl]").length;
+      var erledigt = det.querySelectorAll("li[data-mahl].checked").length;
       stand.textContent = erledigt + "/" + alle;
       stand.classList.toggle("voll", alle > 0 && erledigt === alle);
     });
   }
 
+  // --- Training abhaken ---
+  // Bleibt lokal auf dem Gerät (wie der Einkaufszettel) – kein Commit ins Repo.
+
+  function trainingKey(name) {
+    return "training:" + name;
+  }
+
+  function loadTraining(name) {
+    try {
+      return JSON.parse(localStorage.getItem(trainingKey(name)) || "{}");
+    } catch (e) {
+      return {};
+    }
+  }
+
+  function saveTraining(name, state) {
+    try {
+      localStorage.setItem(trainingKey(name), JSON.stringify(state));
+    } catch (e) { /* ignore (z.B. Safari Private Mode) */ }
+  }
+
+  // Einheiten (fett markierte Zeilen) bekommen data-einheit = "Dienstag|Morgens";
+  // Ruhetag-Hinweise verlieren ihre Checkbox.
+  function annotateTraining(contentEl) {
+    var tag = null;
+    Array.prototype.forEach.call(contentEl.children, function (el) {
+      if (el.tagName === "H2") {
+        var name = el.textContent.split("(")[0].trim();
+        tag = WOCHENTAGE.indexOf(name) >= 0 ? name : null;
+        return;
+      }
+      if (el.tagName !== "UL" || !tag) return;
+      Array.prototype.forEach.call(el.children, function (li) {
+        var stark = li.querySelector("span > strong");
+        if (!li.classList.contains("checkitem") || !stark) return;
+        li.dataset.tag = tag;
+        li.dataset.einheit = tag + "|" + stark.textContent.replace(/:$/, "").trim();
+      });
+    });
+    Array.prototype.forEach.call(
+      contentEl.querySelectorAll("li.checkitem:not([data-einheit])"),
+      function (li) {
+        var box = li.querySelector('input[type="checkbox"]');
+        if (box) li.removeChild(box);
+        li.classList.remove("checkitem");
+      }
+    );
+  }
+
+  // Ist eine Option des Tages erledigt, werden die anderen ("oder abends …") blass.
+  function markiereAlternativen(contentEl) {
+    WOCHENTAGE.forEach(function (t) {
+      var items = contentEl.querySelectorAll('li[data-einheit][data-tag="' + t + '"]');
+      var erledigt = Array.prototype.some.call(items, function (li) { return li.classList.contains("checked"); });
+      Array.prototype.forEach.call(items, function (li) {
+        li.classList.toggle("alternative", erledigt && !li.classList.contains("checked"));
+      });
+    });
+  }
+
+  function applyTrainingChecklist(contentEl, name) {
+    var state = loadTraining(name);
+    Array.prototype.forEach.call(contentEl.querySelectorAll("li[data-einheit]"), function (li) {
+      if (state[li.dataset.einheit]) {
+        li.classList.add("checked");
+        li.querySelector("input").checked = true;
+      }
+    });
+    markiereAlternativen(contentEl);
+    contentEl.onclick = function (e) {
+      if (e.target.closest("details.rezept")) return;
+      var li = e.target.closest("li[data-einheit]");
+      if (!li) return;
+      var box = li.querySelector("input");
+      if (e.target !== box) box.checked = !box.checked;
+      li.classList.toggle("checked", box.checked);
+      var s = loadTraining(name);
+      if (box.checked) s[li.dataset.einheit] = true;
+      else delete s[li.dataset.einheit];
+      saveTraining(name, s);
+      markiereAlternativen(contentEl);
+      aktualisiereTagstand(contentEl);
+      renderFortschritt();
+    };
+  }
+
+  // Wochenstand Training aus dem Plan-Text: welche Tage haben Einheiten, welche sind erledigt.
+  function trainingsStand() {
+    var current = files.training;
+    var stand = { tage: {}, geplant: 0, erledigt: 0 };
+    if (!current) return stand;
+    var state = loadTraining(current.name);
+    var tag = null;
+    current.text.replace(/\r\n/g, "\n").split("\n").forEach(function (l) {
+      var h = /^##\s+(\S+)/.exec(l);
+      if (h) {
+        tag = WOCHENTAGE.indexOf(h[1]) >= 0 ? h[1] : null;
+        if (tag) stand.tage[tag] = { einheiten: 0, erledigt: false };
+        return;
+      }
+      var m = /^-\s+\*\*([^:*]+):\*\*/.exec(l);
+      if (!m || !tag) return;
+      stand.tage[tag].einheiten++;
+      if (state[tag + "|" + m[1].trim()]) stand.tage[tag].erledigt = true;
+    });
+    WOCHENTAGE.forEach(function (t) {
+      var d = stand.tage[t];
+      if (!d || !d.einheiten) return;
+      stand.geplant++;
+      if (d.erledigt) stand.erledigt++;
+    });
+    return stand;
+  }
+
   function render(kind, result) {
     var contentEl = document.getElementById("content");
-    var mode = kind === "einkaufszettel" ? "einkauf" : "essen";
+    var mode = kind === "einkaufszettel" ? "einkauf" : kind === "training" ? "training" : "essen";
+    contentEl.dataset.modus = mode;
     contentEl.innerHTML = renderMarkdown(result.text, mode);
     if (mode === "einkauf") {
       applyChecklist(contentEl, result.name);
       markManualItems(contentEl);
+    } else if (mode === "training") {
+      annotateTraining(contentEl);
+      applyTrainingChecklist(contentEl, result.name);
+      faltbareTage(contentEl);
+      renderFortschritt();
     } else {
       annotateMeals(contentEl);
       applyMealChecklist(contentEl, result.name);
@@ -1034,10 +1329,71 @@
       "<b>" + n + "</b>" + (n === 1 ? "Woche" : "Wochen") + "</span>";
   }
 
+  // Nährwert-Bilanz für heute: gegessen (abgehakt) gegen Tagesziel, dazu was der Plan vorsieht.
+  function makrosHeuteHtml(name, text) {
+    var heute = heutigerWochentag();
+    var plan = naehrwertePlan(text)[heute];
+    if (!plan || !Object.keys(plan.mahlzeiten).length) return "";
+    var state = loadGegessen(name);
+    var gegessen = leereSumme(), geplant = leereSumme();
+    Object.keys(plan.mahlzeiten).forEach(function (slot) {
+      addiere(geplant, plan.mahlzeiten[slot]);
+      if (state[heute + "|" + slot]) addiere(gegessen, plan.mahlzeiten[slot]);
+    });
+    var ziel = tagesziel(plan.ruhetag);
+    var zeilen = [
+      ["kcal", "Kalorien", " kcal"],
+      ["eiweiss", "Eiweiß", " g"],
+      ["kohlenhydrate", "Kohlenhydr.", " g"],
+      ["fett", "Fett", " g"]
+    ].map(function (z) {
+      var k = z[0], soll = ziel[k] || 1;
+      var breite = function (v) { return Math.min(100, Math.round((v / soll) * 100)); };
+      return '<div class="mh-zeile">' +
+        '<span class="mh-name">' + z[1] + "</span>" +
+        '<span class="mh-balken" title="Plan heute: ' + zahl(geplant[k]) + z[2] + '">' +
+          '<i class="geplant" style="width:' + breite(geplant[k]) + '%"></i>' +
+          '<i class="gegessen" style="width:' + breite(gegessen[k]) + '%"></i>' +
+        "</span>" +
+        '<span class="mh-wert' + (gegessen[k] > soll ? " drueber" : "") + '">' +
+          zahl(gegessen[k]) + " / " + zahl(soll) + z[2] + "</span>" +
+        "</div>";
+    }).join("");
+    return '<div class="makros-heute">' +
+      '<div class="mh-kopf"><span><b>Heute</b> · ' + (plan.ruhetag ? "Ruhetag" : "Trainingstag") +
+        '</span><span class="leise">gegessen / Ziel</span></div>' +
+      zeilen +
+      '<div class="mh-fuss">Laut Plan heute: ' + makroText(geplant) +
+        " · heller Balken = noch offen</div>" +
+      "</div>";
+  }
+
+  // Training-Tab: dieselbe Karte, aber Trainingstage statt Mahlzeiten.
+  function renderTrainingsKarte(el) {
+    var s = trainingsStand();
+    var prozent = s.geplant ? Math.round((s.erledigt / s.geplant) * 100) : 0;
+    var tageHtml = WOCHENTAGE.map(function (t) {
+      var d = s.tage[t];
+      var pause = !d || !d.einheiten;
+      return '<span class="' + (d && d.erledigt ? "voll" : "") + '" data-sprung="' + t +
+        '" role="button" tabindex="0" title="Zu ' + t + ' springen">' +
+        t.slice(0, 2) + " " + (pause ? "–" : d.erledigt ? "✓" : "○") + "</span>";
+    }).join("");
+    el.innerHTML =
+      '<div class="zeile">' +
+        '<span class="zahl">' + s.erledigt + "/" + s.geplant + " Trainingstage · " + prozent + "%</span>" +
+      "</div>" +
+      '<div class="balken"><i style="width:' + prozent + '%"></i></div>' +
+      '<div class="tage">' + tageHtml + "</div>" +
+      '<div class="hinweis">Abhaken wird nur auf diesem Gerät gespeichert.</div>';
+  }
+
   function renderFortschritt() {
     var el = document.getElementById("fortschritt");
+    if (!el) return;
+    if (aktuellerTab === "training") { renderTrainingsKarte(el); return; }
     var current = files.essensplan;
-    if (!el || !current) return;
+    if (!current) return;
     var s = wochenStand(current.name);
     var prozent = s.gesamt ? Math.round((s.gegessen / s.gesamt) * 100) : 0;
 
@@ -1055,6 +1411,7 @@
       "</div>" +
       '<div class="balken"><i style="width:' + prozent + '%"></i></div>' +
       '<div class="tage">' + tageHtml + "</div>" +
+      makrosHeuteHtml(current.name, current.text) +
       '<div class="hinweis" id="trackmsg"></div>' +
       '<div class="hinweis" id="tracksetup"></div>';
 
@@ -1387,11 +1744,11 @@
     Object.keys(obj.wochen).sort().reverse().forEach(function (id) {
       wochen[id] = obj.wochen[id];
     });
-    return JSON.stringify({
-      version: 1,
-      ziel: obj.ziel || ZIEL_PROZENT,
-      wochen: wochen
-    }, null, 2) + "\n";
+    var out = { version: 1, ziel: obj.ziel || ZIEL_PROZENT };
+    // Tagesziele werden von Hand in der Datei gepflegt – beim Speichern mitnehmen.
+    if (obj.tagesziele) out.tagesziele = obj.tagesziele;
+    out.wochen = wochen;
+    return JSON.stringify(out, null, 2) + "\n";
   }
 
   // Historie klein halten: zwei Jahre reichen für die Serie.
@@ -1496,9 +1853,12 @@
     addItem(item);
   });
 
+  var aktuellerTab = "essensplan";
+
   function updateAddVisibility(kind) {
+    aktuellerTab = kind;
     addEl.classList.toggle("visible", kind === "einkaufszettel");
-    document.getElementById("fortschritt").hidden = kind !== "essensplan";
+    document.getElementById("fortschritt").hidden = kind === "einkaufszettel";
     if (kind === "einkaufszettel") { message(""); renderSetup(); }
   }
 

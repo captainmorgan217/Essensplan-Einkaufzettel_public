@@ -1,6 +1,20 @@
 {
   "version": 1,
   "ziel": 80,
+  "tagesziele": {
+    "training": {
+      "kcal": 2300,
+      "eiweiss": 150,
+      "kohlenhydrate": 260,
+      "fett": 70
+    },
+    "ruhetag": {
+      "kcal": 2100,
+      "eiweiss": 150,
+      "kohlenhydrate": 210,
+      "fett": 70
+    }
+  },
   "wochen": {
     "2026-KW40": {
       "gegessen": 3,
