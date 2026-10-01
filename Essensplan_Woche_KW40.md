@@ -67,6 +67,10 @@
   - _Zubereitung:_ 1. Nudeln bissfest kochen. 2. Putenbrust in Streifen schneiden und in wenig Öl 4–5 Min. rundum anbraten, salzen und pfeffern. 3. Zucchini würfeln, 3 Min. mitbraten. 4. Tomaten klein schneiden, zugeben und 8–10 Min. zu einer Sauce einkochen, mit Oregano und Basilikum abschmecken. 5. Nudeln untermischen. Meal-Prep: hält 3 Tage. Helle Nudeln sind vor dem Training bekömmlicher als Vollkorn.
 - **Snack:** Handvoll Kürbiskerne & Sonnenblumenkerne
   - _Nährwerte:_ 170 kcal · 8 g Eiweiß · 3 g KH · 14 g Fett
+- **Trainingssnack (extra Energie):** Vollkornbrot mit Erdnussmus & Banane
+  - _Nährwerte:_ 410 kcal · 13 g Eiweiß · 54 g KH · 14 g Fett
+  - _Zutaten:_ Vollkornbrot, Erdnussmus, Bananen
+  - _Zubereitung:_ 1. Zwei Scheiben Vollkornbrot (gern getoastet) dünn mit Erdnussmus bestreichen (ca. 25 g). 2. Banane in Scheiben schneiden und darauflegen. 3. Nach Geschmack mit Zimt bestreuen.
 - **Abendsnack (proteinreich):** Magerquark mit Beeren & Müsli
   - _Nährwerte:_ 285 kcal · 28 g Eiweiß · 35 g KH · 3 g Fett
 
@@ -84,6 +88,10 @@
   - _Plan B:_ Klappt es um 17 Uhr nicht, 30–60 Min. vor dem Training einen Vollkorn-Toast mit Magerquark/Skyr & Marmelade – die richtige Mahlzeit dann nach dem Training.
 - **Snack:** Pistazien-Energyballs
   - _Nährwerte:_ 200 kcal · 5 g Eiweiß · 23 g KH · 9 g Fett
+- **Trainingssnack (extra Energie):** Vollkornbrot mit Erdnussmus & Banane
+  - _Nährwerte:_ 410 kcal · 13 g Eiweiß · 54 g KH · 14 g Fett
+  - _Zutaten:_ Vollkornbrot, Erdnussmus, Bananen
+  - _Zubereitung:_ 1. Zwei Scheiben Vollkornbrot (gern getoastet) dünn mit Erdnussmus bestreichen (ca. 25 g). 2. Banane in Scheiben schneiden und darauflegen. 3. Nach Geschmack mit Zimt bestreuen.
 - **Abendsnack (nach dem Training, ca. 21.30 Uhr):** Magerquark-Joghurt-Bombe mit Haferflocken & Beeren
   - _Nährwerte:_ 365 kcal · 32 g Eiweiß · 42 g KH · 4 g Fett
   - _Zutaten:_ Magerquark, Griechischer Joghurt, Vollkorn-Haferflocken, Beeren (TK & frisch)

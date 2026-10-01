@@ -3,6 +3,7 @@
 Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 
 ## Obst & Gemüse
+- Bananen
 - Beeren (TK & frisch)
 - Birnen
 - Gurke
@@ -46,6 +47,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
 
 ## Nüsse & Samen
 - Chiasamen
+- Erdnussmus
 - Kürbiskerne
 - Leinsamen
 - Mandeln
