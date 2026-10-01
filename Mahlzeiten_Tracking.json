@@ -3,16 +3,16 @@
   "ziel": 80,
   "tagesziele": {
     "training": {
-      "kcal": 2300,
+      "kcal": 2800,
       "eiweiss": 150,
-      "kohlenhydrate": 260,
-      "fett": 70
+      "kohlenhydrate": 380,
+      "fett": 75
     },
     "ruhetag": {
-      "kcal": 2100,
+      "kcal": 2500,
       "eiweiss": 150,
-      "kohlenhydrate": 210,
-      "fett": 70
+      "kohlenhydrate": 305,
+      "fett": 75
     }
   },
   "wochen": {

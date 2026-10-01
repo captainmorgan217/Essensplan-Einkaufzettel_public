@@ -816,8 +816,8 @@
   // Tagesziele: aus Mahlzeiten_Tracking.json ("tagesziele"), sonst diese Startwerte.
   // An Trainingstagen mehr Kohlenhydrate, Eiweiß bleibt gleich.
   var STANDARD_ZIELE = {
-    training: { kcal: 2300, eiweiss: 150, kohlenhydrate: 260, fett: 70 },
-    ruhetag: { kcal: 2100, eiweiss: 150, kohlenhydrate: 210, fett: 70 }
+    training: { kcal: 2800, eiweiss: 150, kohlenhydrate: 380, fett: 75 },
+    ruhetag: { kcal: 2500, eiweiss: 150, kohlenhydrate: 305, fett: 75 }
   };
 
   function tagesziel(ruhetag) {
@@ -1368,6 +1368,23 @@
       "</div>";
   }
 
+  // Anfeuerung je Wochenstand – ab 80 % kräftiger, bei 100 % voll gefülltes Badge.
+  var TRAININGS_SPRUECHE = [
+    [100, "Killa!", " s3"],
+    [80, "Gib ihm", " s2"],
+    [60, "Jetzt aber", ""],
+    [40, "Ok", ""],
+    [20, "Naja", ""]
+  ];
+
+  function trainingsSpruch(prozent) {
+    for (var i = 0; i < TRAININGS_SPRUECHE.length; i++) {
+      var s = TRAININGS_SPRUECHE[i];
+      if (prozent >= s[0]) return '<span class="badge' + s[2] + '"><b>' + s[1] + "</b></span>";
+    }
+    return '<span class="leer">Los geht’s</span>';
+  }
+
   // Training-Tab: dieselbe Karte, aber Trainingstage statt Mahlzeiten.
   function renderTrainingsKarte(el) {
     var s = trainingsStand();
@@ -1382,6 +1399,7 @@
     el.innerHTML =
       '<div class="zeile">' +
         '<span class="zahl">' + s.erledigt + "/" + s.geplant + " Trainingstage · " + prozent + "%</span>" +
+        '<span class="serie">' + trainingsSpruch(prozent) + "</span>" +
       "</div>" +
       '<div class="balken"><i style="width:' + prozent + '%"></i></div>' +
       '<div class="tage">' + tageHtml + "</div>" +
