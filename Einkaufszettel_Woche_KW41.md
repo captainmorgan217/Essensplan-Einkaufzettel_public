@@ -1,55 +1,55 @@
 # Einkaufszettel – Woche
 
-Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW40.md`).
+Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW41.md`).
 
 ## Obst & Gemüse
-- Bananen
 - Beeren (TK & frisch)
 - Birnen
 - Gurke
-- Hokkaido-Kürbis
 - Karotten
 - Kresse
 - Paprika
+- Pastinaken
 - Salat (Kopfsalat/Blattsalat)
-- Spinat (frisch/TK)
 - Süßkartoffeln
-- Wirsing
 - Äpfel
 
 ## Kühlregal / Milchprodukte
 - Feta light
 - Griechischer Joghurt
 - Hüttenkäse
+- Kefir (fettarm)
 - Magerquark
 - Milch
-- Protein-Drink (klein)
+- Reibekäse light
 - Skyr
 - Sojamilch
 - Wurst (Aufschnitt)
 
 ## Konserven / Sonstiges
 - Marmelade
-- Thunfisch (Dose, im eigenen Saft)
 
 ## Fleisch & Fisch
 - Hühnchenbrust
-- Mettenden
+- Lachsfilet
 - Putenbrust
 - Rindergulasch
+- Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
 - Basmatireis
 - Nudeln (Hartweizen)
+- Quinoa
+- Reiswaffeln
 - Schwarze Bohnen
 - Vollkornbrot
-- Vollkornreis
+- Vollkornnudeln
 
 ## Nüsse & Samen
 - Chiasamen
-- Mandelmus
 - Kürbiskerne
 - Leinsamen
+- Mandelmus
 - Mandeln
 - Pistazien
 - Sonnenblumenkerne
