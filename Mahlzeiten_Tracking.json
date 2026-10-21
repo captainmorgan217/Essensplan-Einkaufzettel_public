@@ -17,17 +17,29 @@
   },
   "wochen": {
     "2026-KW42": {
-      "gegessen": 0,
+      "gegessen": 1,
       "gesamt": 40,
+      "proTag": {
+        "Montag": 6,
+        "Dienstag": 6,
+        "Mittwoch": 5,
+        "Donnerstag": 6,
+        "Freitag": 6,
+        "Samstag": 6,
+        "Sonntag": 5
+      },
       "tage": {
         "Montag": 0,
         "Dienstag": 0,
-        "Mittwoch": 0,
+        "Mittwoch": 1,
         "Donnerstag": 0,
         "Freitag": 0,
         "Samstag": 0,
         "Sonntag": 0
-      }
+      },
+      "slots": [
+        "Mittwoch|Mittag"
+      ]
     },
     "2026-KW41": {
       "gegessen": 0,
