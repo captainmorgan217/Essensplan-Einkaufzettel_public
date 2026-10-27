@@ -60,6 +60,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW42.md`).
 ## Manuell hinzugefügt
 - Orangensaft
 - Limetten
+- Butter
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
