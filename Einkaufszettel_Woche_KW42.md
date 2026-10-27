@@ -58,6 +58,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW42.md`).
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
+- Orangensaft
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
