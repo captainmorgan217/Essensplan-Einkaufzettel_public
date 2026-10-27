@@ -63,6 +63,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW42.md`).
 - Butter
 - Marmelade
 - Hüttenkäse
+- Eier
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
