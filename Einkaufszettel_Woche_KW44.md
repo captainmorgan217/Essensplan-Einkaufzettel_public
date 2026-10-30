@@ -62,6 +62,7 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW44.md`).
 - Eier
 - Sardellen
 - Bohnen
+- Been
 
 ---
 *Bereits vorhandene Lebensmittel (siehe Vorhandene_Lebensmittel.md) wurden abgezogen.*
