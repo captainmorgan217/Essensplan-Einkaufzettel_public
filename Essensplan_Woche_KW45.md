@@ -5,14 +5,14 @@
   - _Nährwerte:_ 705 kcal · 50 g Eiweiß · 76 g KH · 18 g Fett
   - _Zutaten:_ Vollkornbrot, Hüttenkäse, Marmelade
   - _Zubereitung:_ 1. Vollkornbrot toasten. 2. Hüttenkäse (ca. 100 g) daraufstreichen, Marmelade darüber – schmeckt fast wie Käsekuchen. Ca. 18–20 g Protein, fettarm und leicht verdaulich. 30–60 Min. vor dem Training essen.
-- **Mittag:** Kürbis-Hähnchen-Curry mit Kokosmilch & Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
-  - _Nährwerte:_ 590 kcal · 40 g Eiweiß · 59 g KH · 19 g Fett
-  - _Zutaten:_ Hokkaido-Kürbis, Hühnchenbrust, Kokosmilch, Spinat (frisch/TK), Vollkornreis
-  - _Zubereitung:_ 1. Vollkornreis 25–30 Min. garen. 2. Hokkaido entkernen und mit Schale würfeln. 3. Hühnchenbrust würfeln, in Öl anbraten, 1–2 EL Currypaste kurz mitrösten. 4. Kürbis und Kokosmilch zugeben, 15 Min. köcheln, bis der Kürbis weich ist. 5. Spinat unterheben und zusammenfallen lassen, mit Salz, Limette und etwas Sojasauce abschmecken. Meal-Prep: hält 3–4 Tage.
-- **Abend:** Pellkartoffeln mit Kräuterquark & Gurke *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
-  - _Nährwerte:_ 380 kcal · 32 g Eiweiß · 56 g KH · 2 g Fett
-  - _Zutaten:_ Kartoffeln, Magerquark, Gurke, Kresse
-  - _Zubereitung:_ 1. Kartoffeln mit Schale ca. 20–25 Min. kochen, bis sie weich sind. 2. Magerquark mit einem Schuss Milch oder Wasser glatt rühren, mit Salz, Pfeffer, Kresse und Kräutern (Schnittlauch/Petersilie) abschmecken. 3. Gurke in Scheiben schneiden. Meal-Prep: Kartoffeln vorkochen (halten 3 Tage), Quark frisch anrühren.
+- **Mittag:** Rote-Linsen-Dal mit Vollkornreis *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Nährwerte:_ 535 kcal · 22 g Eiweiß · 77 g KH · 12 g Fett
+  - _Zutaten:_ Rote Linsen, Vollkornreis, Tomaten (Rispen/Kirschtomaten)
+  - _Zubereitung:_ 1. Zwiebel und Knoblauch (wenn vorhanden) in Öl glasig dünsten, Currypulver, Kurkuma und Kreuzkümmel 30 Sek. mitrösten. 2. Rote Linsen und gewürfelte Tomaten zugeben, mit der dreifachen Menge Wasser auffüllen. 3. 15–20 Min. köcheln, bis die Linsen zerfallen – gelegentlich umrühren. 4. Kräftig mit Salz und Zitrone abschmecken, mit Vollkornreis servieren. Meal-Prep: wird über Nacht dicker, einfach mit einem Schuss Wasser aufkochen.
+- **Abend:** Hähnchen-Reis-Suppe mit Karotten *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Nährwerte:_ 400 kcal · 34 g Eiweiß · 48 g KH · 7 g Fett
+  - _Zutaten:_ Hühnchenbrust, Basmatireis, Karotten, Zucchini
+  - _Zubereitung:_ 1. Karotten in Scheiben, Zucchini in Würfel schneiden. 2. Hühnchenbrust ganz in ca. 1,5 l gesalzenem Wasser oder Gemüsebrühe 15 Min. sanft köcheln, herausnehmen. 3. Reis und Karotten in die Brühe geben und 12 Min. köcheln, Zucchini die letzten 5 Min. dazu. 4. Hähnchen zerzupfen, zurückgeben, mit Salz, Pfeffer und Petersilie abschmecken. Meal-Prep: hält 3 Tage, Reis quillt nach – beim Aufwärmen etwas Wasser zugeben. Sehr bekömmlich vor dem Training.
 - **Snack:** Handvoll Kürbiskerne & Sonnenblumenkerne
   - _Nährwerte:_ 170 kcal · 8 g Eiweiß · 3 g KH · 14 g Fett
 - **Trainingssnack (extra Energie):** Reiswaffeln mit Mandelmus & Banane
@@ -27,14 +27,14 @@
   - _Nährwerte:_ 730 kcal · 46 g Eiweiß · 83 g KH · 18 g Fett
   - _Zutaten:_ Vollkornbrot, Marmelade, Kefir (fettarm)
   - _Zubereitung:_ 1. Vollkornbrot toasten. 2. Dünn mit Marmelade bestreichen. 3. Dazu ein Glas fettarmen Kefir (1,5 % oder weniger) trinken. 30–60 Min. vor dem Training.
-- **Mittag:** Kürbis-Hähnchen-Curry mit Kokosmilch & Vollkornreis
-  - _Nährwerte:_ 590 kcal · 40 g Eiweiß · 59 g KH · 19 g Fett
-  - _Zutaten:_ Hokkaido-Kürbis, Hühnchenbrust, Kokosmilch, Spinat (frisch/TK), Vollkornreis
-  - _Zubereitung:_ 1. Vollkornreis 25–30 Min. garen. 2. Hokkaido entkernen und mit Schale würfeln. 3. Hühnchenbrust würfeln, in Öl anbraten, 1–2 EL Currypaste kurz mitrösten. 4. Kürbis und Kokosmilch zugeben, 15 Min. köcheln, bis der Kürbis weich ist. 5. Spinat unterheben und zusammenfallen lassen, mit Salz, Limette und etwas Sojasauce abschmecken. Meal-Prep: hält 3–4 Tage.
-- **Abend:** Pellkartoffeln mit Kräuterquark & Gurke
-  - _Nährwerte:_ 380 kcal · 32 g Eiweiß · 56 g KH · 2 g Fett
-  - _Zutaten:_ Kartoffeln, Magerquark, Gurke, Kresse
-  - _Zubereitung:_ 1. Kartoffeln mit Schale ca. 20–25 Min. kochen, bis sie weich sind. 2. Magerquark mit einem Schuss Milch oder Wasser glatt rühren, mit Salz, Pfeffer, Kresse und Kräutern (Schnittlauch/Petersilie) abschmecken. 3. Gurke in Scheiben schneiden. Meal-Prep: Kartoffeln vorkochen (halten 3 Tage), Quark frisch anrühren.
+- **Mittag:** Rote-Linsen-Dal mit Vollkornreis
+  - _Nährwerte:_ 535 kcal · 22 g Eiweiß · 77 g KH · 12 g Fett
+  - _Zutaten:_ Rote Linsen, Vollkornreis, Tomaten (Rispen/Kirschtomaten)
+  - _Zubereitung:_ 1. Zwiebel und Knoblauch (wenn vorhanden) in Öl glasig dünsten, Currypulver, Kurkuma und Kreuzkümmel 30 Sek. mitrösten. 2. Rote Linsen und gewürfelte Tomaten zugeben, mit der dreifachen Menge Wasser auffüllen. 3. 15–20 Min. köcheln, bis die Linsen zerfallen – gelegentlich umrühren. 4. Kräftig mit Salz und Zitrone abschmecken, mit Vollkornreis servieren. Meal-Prep: wird über Nacht dicker, einfach mit einem Schuss Wasser aufkochen.
+- **Abend:** Hähnchen-Reis-Suppe mit Karotten
+  - _Nährwerte:_ 400 kcal · 34 g Eiweiß · 48 g KH · 7 g Fett
+  - _Zutaten:_ Hühnchenbrust, Basmatireis, Karotten, Zucchini
+  - _Zubereitung:_ 1. Karotten in Scheiben, Zucchini in Würfel schneiden. 2. Hühnchenbrust ganz in ca. 1,5 l gesalzenem Wasser oder Gemüsebrühe 15 Min. sanft köcheln, herausnehmen. 3. Reis und Karotten in die Brühe geben und 12 Min. köcheln, Zucchini die letzten 5 Min. dazu. 4. Hähnchen zerzupfen, zurückgeben, mit Salz, Pfeffer und Petersilie abschmecken. Meal-Prep: hält 3 Tage, Reis quillt nach – beim Aufwärmen etwas Wasser zugeben. Sehr bekömmlich vor dem Training.
 - **Snack:** Handvoll Mandeln
   - _Nährwerte:_ 175 kcal · 6 g Eiweiß · 2 g KH · 15 g Fett
 - **Trainingssnack (extra Energie):** Bananen-Hafer-Shake mit Mandelmus
@@ -47,14 +47,14 @@
 ## Mittwoch (Ruhetag)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Griechischer Joghurt/Magerquark mit Haferflocken, Beeren, Leinsamen
   - _Nährwerte:_ 835 kcal · 58 g Eiweiß · 90 g KH · 23 g Fett
-- **Mittag:** Kürbis-Hähnchen-Curry mit Kokosmilch & Vollkornreis
-  - _Nährwerte:_ 590 kcal · 40 g Eiweiß · 59 g KH · 19 g Fett
-  - _Zutaten:_ Hokkaido-Kürbis, Hühnchenbrust, Kokosmilch, Spinat (frisch/TK), Vollkornreis
-  - _Zubereitung:_ 1. Vollkornreis 25–30 Min. garen. 2. Hokkaido entkernen und mit Schale würfeln. 3. Hühnchenbrust würfeln, in Öl anbraten, 1–2 EL Currypaste kurz mitrösten. 4. Kürbis und Kokosmilch zugeben, 15 Min. köcheln, bis der Kürbis weich ist. 5. Spinat unterheben und zusammenfallen lassen, mit Salz, Limette und etwas Sojasauce abschmecken. Meal-Prep: hält 3–4 Tage.
-- **Abend:** Pellkartoffeln mit Kräuterquark & Gurke
-  - _Nährwerte:_ 380 kcal · 32 g Eiweiß · 56 g KH · 2 g Fett
-  - _Zutaten:_ Kartoffeln, Magerquark, Gurke, Kresse
-  - _Zubereitung:_ 1. Kartoffeln mit Schale ca. 20–25 Min. kochen, bis sie weich sind. 2. Magerquark mit einem Schuss Milch oder Wasser glatt rühren, mit Salz, Pfeffer, Kresse und Kräutern (Schnittlauch/Petersilie) abschmecken. 3. Gurke in Scheiben schneiden. Meal-Prep: Kartoffeln vorkochen (halten 3 Tage), Quark frisch anrühren.
+- **Mittag:** Rote-Linsen-Dal mit Vollkornreis
+  - _Nährwerte:_ 535 kcal · 22 g Eiweiß · 77 g KH · 12 g Fett
+  - _Zutaten:_ Rote Linsen, Vollkornreis, Tomaten (Rispen/Kirschtomaten)
+  - _Zubereitung:_ 1. Zwiebel und Knoblauch (wenn vorhanden) in Öl glasig dünsten, Currypulver, Kurkuma und Kreuzkümmel 30 Sek. mitrösten. 2. Rote Linsen und gewürfelte Tomaten zugeben, mit der dreifachen Menge Wasser auffüllen. 3. 15–20 Min. köcheln, bis die Linsen zerfallen – gelegentlich umrühren. 4. Kräftig mit Salz und Zitrone abschmecken, mit Vollkornreis servieren. Meal-Prep: wird über Nacht dicker, einfach mit einem Schuss Wasser aufkochen.
+- **Abend:** Hähnchen-Reis-Suppe mit Karotten
+  - _Nährwerte:_ 400 kcal · 34 g Eiweiß · 48 g KH · 7 g Fett
+  - _Zutaten:_ Hühnchenbrust, Basmatireis, Karotten, Zucchini
+  - _Zubereitung:_ 1. Karotten in Scheiben, Zucchini in Würfel schneiden. 2. Hühnchenbrust ganz in ca. 1,5 l gesalzenem Wasser oder Gemüsebrühe 15 Min. sanft köcheln, herausnehmen. 3. Reis und Karotten in die Brühe geben und 12 Min. köcheln, Zucchini die letzten 5 Min. dazu. 4. Hähnchen zerzupfen, zurückgeben, mit Salz, Pfeffer und Petersilie abschmecken. Meal-Prep: hält 3 Tage, Reis quillt nach – beim Aufwärmen etwas Wasser zugeben. Sehr bekömmlich vor dem Training.
 - **Snack:** Handvoll Mandeln & Pistazien
   - _Nährwerte:_ 175 kcal · 6 g Eiweiß · 4 g KH · 15 g Fett
 - **Abendsnack (proteinreich):** Griechischer Joghurt mit Honig & Chiasamen
@@ -65,10 +65,10 @@
   - _Nährwerte:_ 675 kcal · 50 g Eiweiß · 77 g KH · 14 g Fett
   - _Zutaten:_ Vollkornbrot, Magerquark, Marmelade
   - _Zubereitung:_ 1. Vollkornbrot toasten. 2. Magerquark mit einem Schluck Wasser oder Milch glatt rühren, daraufstreichen, Marmelade darüber. Praktisch fettfrei. 30–60 Min. vor dem Training essen.
-- **Mittag:** Chili sin Carne mit schwarzen Bohnen & Süßkartoffel *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
-  - _Nährwerte:_ 475 kcal · 16 g Eiweiß · 69 g KH · 12 g Fett
-  - _Zutaten:_ Schwarze Bohnen, Süßkartoffeln, Paprika, Tomaten (Rispen/Kirschtomaten), Mais (Dose/TK), Zwiebeln
-  - _Zubereitung:_ 1. Zwiebeln und Paprika würfeln und in Öl 5 Min. anbraten. 2. Paprikapulver, Kreuzkümmel und Chili kurz mitrösten. 3. Süßkartoffeln würfeln, mit den Tomaten zugeben, etwas Wasser angießen und 20 Min. köcheln. 4. Abgespülte Bohnen und Mais zugeben, weitere 10 Min. köcheln. 5. Mit Salz, Pfeffer, Limette und einer Prise Kakao abschmecken. Meal-Prep: hält 4 Tage.
+- **Mittag:** Rindergulasch mit Kartoffeln & Paprika *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
+  - _Nährwerte:_ 530 kcal · 37 g Eiweiß · 47 g KH · 20 g Fett
+  - _Zutaten:_ Rindergulasch, Kartoffeln, Paprika, Zwiebeln, Tomaten (Rispen/Kirschtomaten)
+  - _Zubereitung:_ 1. Zwiebeln grob würfeln. Gulasch trocken tupfen und portionsweise in einem schweren Topf scharf anbraten, herausnehmen. 2. Zwiebeln im Bratfett 8–10 Min. goldbraun schmoren, 2 EL Paprikapulver (edelsüß) kurz mitrösten – nicht anbrennen lassen. 3. Fleisch zurückgeben, Tomaten zugeben, mit Wasser knapp bedecken und zugedeckt 1,5–2 Std. bei kleiner Hitze schmoren. 4. Paprika in Streifen und Kartoffelwürfel die letzten 25 Min. mitgaren. 5. Mit Salz, Pfeffer, Kümmel und Majoram abschmecken. Meal-Prep: hält 4 Tage und schmeckt aufgewärmt noch besser.
 - **Abend:** Gebratener Eierreis mit Karotten & Erbsen *(Meal-Prep – große Portion kochen, reicht mehrere Tage)*
   - _Nährwerte:_ 560 kcal · 22 g Eiweiß · 67 g KH · 22 g Fett
   - _Zutaten:_ Basmatireis, Eier, Karotten, Erbsen (TK)
@@ -85,10 +85,10 @@
 ## Freitag (Kickboxen abends 19–21 Uhr)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Overnight Oats
   - _Nährwerte:_ 820 kcal · 45 g Eiweiß · 107 g KH · 21 g Fett
-- **Mittag:** Chili sin Carne mit schwarzen Bohnen & Süßkartoffel
-  - _Nährwerte:_ 475 kcal · 16 g Eiweiß · 69 g KH · 12 g Fett
-  - _Zutaten:_ Schwarze Bohnen, Süßkartoffeln, Paprika, Tomaten (Rispen/Kirschtomaten), Mais (Dose/TK), Zwiebeln
-  - _Zubereitung:_ 1. Zwiebeln und Paprika würfeln und in Öl 5 Min. anbraten. 2. Paprikapulver, Kreuzkümmel und Chili kurz mitrösten. 3. Süßkartoffeln würfeln, mit den Tomaten zugeben, etwas Wasser angießen und 20 Min. köcheln. 4. Abgespülte Bohnen und Mais zugeben, weitere 10 Min. köcheln. 5. Mit Salz, Pfeffer, Limette und einer Prise Kakao abschmecken. Meal-Prep: hält 4 Tage.
+- **Mittag:** Rindergulasch mit Kartoffeln & Paprika
+  - _Nährwerte:_ 530 kcal · 37 g Eiweiß · 47 g KH · 20 g Fett
+  - _Zutaten:_ Rindergulasch, Kartoffeln, Paprika, Zwiebeln, Tomaten (Rispen/Kirschtomaten)
+  - _Zubereitung:_ 1. Zwiebeln grob würfeln. Gulasch trocken tupfen und portionsweise in einem schweren Topf scharf anbraten, herausnehmen. 2. Zwiebeln im Bratfett 8–10 Min. goldbraun schmoren, 2 EL Paprikapulver (edelsüß) kurz mitrösten – nicht anbrennen lassen. 3. Fleisch zurückgeben, Tomaten zugeben, mit Wasser knapp bedecken und zugedeckt 1,5–2 Std. bei kleiner Hitze schmoren. 4. Paprika in Streifen und Kartoffelwürfel die letzten 25 Min. mitgaren. 5. Mit Salz, Pfeffer, Kümmel und Majoram abschmecken. Meal-Prep: hält 4 Tage und schmeckt aufgewärmt noch besser.
 - **Abend (17 Uhr, vor dem Training):** Gebratener Eierreis mit Karotten & Erbsen
   - _Nährwerte:_ 560 kcal · 22 g Eiweiß · 67 g KH · 22 g Fett
   - _Zutaten:_ Basmatireis, Eier, Karotten, Erbsen (TK)
@@ -110,14 +110,14 @@
   - _Nährwerte:_ 670 kcal · 49 g Eiweiß · 77 g KH · 14 g Fett
   - _Zutaten:_ Vollkornbrot, Skyr, Marmelade
   - _Zubereitung:_ 1. Vollkornbrot toasten. 2. Skyr statt Butter dick daraufstreichen, Marmelade darüber. Praktisch fettfrei, liegt kaum im Magen. 30–60 Min. vor dem Training essen.
-- **Mittag:** Ofenlachs mit Wurzelgemüse & Quinoa
-  - _Nährwerte:_ 625 kcal · 35 g Eiweiß · 58 g KH · 26 g Fett
-  - _Zutaten:_ Lachsfilet, Quinoa, Karotten, Pastinaken, Zwiebeln
-  - _Zubereitung:_ 1. Ofen auf 200 °C vorheizen. 2. Karotten, Pastinaken und Zwiebeln in Stücke schneiden, mit Öl, Salz und Thymian mischen und 20 Min. rösten. 3. Quinoa gut abspülen und im doppelten Volumen Wasser 15 Min. köcheln. 4. Lachs salzen, zum Gemüse aufs Blech legen und 12–15 Min. mitbacken. 5. Mit Zitrone beträufeln und mit Quinoa servieren. Meal-Prep: Gemüse und Quinoa halten 3 Tage, den Lachs innerhalb von 2 Tagen essen.
-- **Abend:** Rindergeschnetzeltes mit Reis & Paprika
-  - _Nährwerte:_ 565 kcal · 40 g Eiweiß · 64 g KH · 16 g Fett
-  - _Zutaten:_ Rindergeschnetzeltes (mager), Basmatireis, Paprika, Zwiebeln
-  - _Zubereitung:_ 1. Reis nach Packung garen. 2. Rindfleisch in dünnen Streifen portionsweise in einer sehr heißen Pfanne 1–2 Min. scharf anbraten, herausnehmen, salzen und pfeffern. 3. Zwiebel und Paprika in Streifen 4–5 Min. braten. 4. Mit einem Schuss Wasser oder Brühe ablöschen, mit Paprikapulver und etwas Sojasauce würzen, Fleisch zurück in die Pfanne geben und nur noch kurz erwärmen – sonst wird es zäh. 5. Mit Reis servieren. Meal-Prep: hält 3 Tage.
+- **Mittag:** Rinderhack-Chili con Carne mit Vollkornreis
+  - _Nährwerte:_ 570 kcal · 38 g Eiweiß · 57 g KH · 19 g Fett
+  - _Zutaten:_ Rinderhack (für Fleischküchle), Kidneybohnen, Tomaten (Rispen/Kirschtomaten), Paprika, Vollkornreis
+  - _Zubereitung:_ 1. Rinderhack krümelig braun braten und salzen. 2. Gewürfelte Paprika zugeben, 5 Min. mitbraten, dann Paprikapulver, Kreuzkümmel und Chili kurz mitrösten. 3. Tomaten und abgespülte Kidneybohnen zugeben und 25–30 Min. bei kleiner Hitze köcheln – je länger, desto runder der Geschmack. 4. Mit Salz, Pfeffer und einer Prise Zimt oder etwas Kakao abschmecken, mit Vollkornreis servieren. Meal-Prep: klassiker zum Vorkochen, hält 4 Tage und schmeckt aufgewärmt besser.
+- **Abend:** Fisch mit Dinkel-Couscous, Brokkoli, Tahin-Dressing
+  - _Nährwerte:_ 485 kcal · 41 g Eiweiß · 47 g KH · 12 g Fett
+  - _Zutaten:_ Fisch (weiß, nach Wahl), Couscous (Dinkel-/Vollkorn), Brokkoli, Tahin
+  - _Zubereitung:_ 1. Couscous mit kochendem Wasser übergießen (1:1), 5 Min. quellen lassen. 2. Brokkoli 5 Min. dämpfen. 3. Fischfilet salzen und in der Pfanne je Seite 3–4 Min. braten. 4. Für das Dressing Tahin mit Zitronensaft, Wasser, Salz und etwas Knoblauch glatt rühren – tropfenweise Wasser zugeben, bis es cremig ist. 5. Anrichten und das Dressing darüberziehen.
 - **Snack:** Handvoll Mandeln
   - _Nährwerte:_ 175 kcal · 6 g Eiweiß · 2 g KH · 15 g Fett
 - **Trainingssnack (extra Energie):** Reiswaffeln mit Mandelmus & Banane
@@ -130,18 +130,18 @@
 ## Sonntag (Ruhetag · Weekend Spezial)
 - **Frühstück:** Miracle Wake Up Smoothie, danach Rührei mit Vollkorntoast, Avocado und Feta
   - _Nährwerte:_ 970 kcal · 56 g Eiweiß · 78 g KH · 46 g Fett
-- **Mittag:** Wirsing-Kartoffel-Eintopf mit Mettenden
-  - _Nährwerte:_ 525 kcal · 20 g Eiweiß · 48 g KH · 26 g Fett
-  - _Zutaten:_ Wirsing, Kartoffeln, Mettenden, Karotten, Zwiebeln
-  - _Zubereitung:_ 1. Zwiebeln würfeln und in einem großen Topf glasig dünsten. 2. Kartoffeln und Karotten würfeln, Wirsing in Streifen schneiden, alles zugeben und mit ca. 1,5 l Gemüsebrühe auffüllen. 3. 20 Min. köcheln. 4. Mettenden in Scheiben schneiden und die letzten 10 Min. mitziehen lassen. 5. Mit Salz, Pfeffer, Kümmel und Muskat abschmecken, einige Kartoffeln leicht zerdrücken, damit der Eintopf sämig wird. Meal-Prep: hält 4 Tage.
-- **Abend:** Tofu-Reis-Pfanne mit Karotten & Zucchini
-  - _Nährwerte:_ 565 kcal · 27 g Eiweiß · 67 g KH · 22 g Fett
-  - _Zutaten:_ Tofu, Basmatireis, Karotten, Zucchini
-  - _Zubereitung:_ 1. Reis nach Packung garen. 2. Tofu gut abtropfen, würfeln und in wenig Öl rundum goldbraun braten (6–8 Min.). 3. Karotten in dünne Scheiben und Zucchini in Würfel schneiden, 5 Min. mitbraten. 4. Reis untermischen, mit Sojasauce und etwas Ingwer abschmecken. Meal-Prep: hält 3 Tage.
-- **Snack:** Handvoll Kürbiskerne & Sonnenblumenkerne
-  - _Nährwerte:_ 170 kcal · 8 g Eiweiß · 3 g KH · 14 g Fett
-- **Abendsnack (proteinreich):** Magerquark mit Marmelade & Müsli
-  - _Nährwerte:_ 295 kcal · 27 g Eiweiß · 39 g KH · 3 g Fett
+- **Mittag:** Bulgur-Salat mit Kidneybohnen
+  - _Nährwerte:_ 490 kcal · 17 g Eiweiß · 72 g KH · 12 g Fett
+  - _Zutaten:_ Bulgur, Kidneybohnen, Pfirsiche
+  - _Zubereitung:_ 1. Bulgur mit kochendem Wasser übergießen (1:1,5), abdecken und 15 Min. quellen lassen, dann auflockern. 2. Kidneybohnen abspülen und abtropfen lassen. 3. Pfirsiche würfeln. 4. Alles mit Olivenöl, Zitronensaft, Salz, Pfeffer und – wenn da – frischer Minze oder Petersilie mischen. Kalt oder lauwarm servieren.
+- **Abend:** Gemüse-Pfanne mit Champignons, Spinat, Kresse, Tofu, Sesam, Couscous
+  - _Nährwerte:_ 480 kcal · 30 g Eiweiß · 47 g KH · 18 g Fett
+  - _Zutaten:_ Champignons, Spinat (frisch/TK), Kresse, Tofu, Sesam, Couscous (Dinkel-/Vollkorn)
+  - _Zubereitung:_ 1. Couscous mit kochendem Wasser übergießen (1:1) und 5 Min. quellen lassen. 2. Tofu würfeln und knusprig braten, herausnehmen. 3. Champignons in Scheiben in derselben Pfanne scharf anbraten, bis sie Farbe nehmen. 4. Spinat zugeben, zusammenfallen lassen, mit Sojasauce und Pfeffer abschmecken. 5. Mit Couscous und Tofu mischen, Sesam darüber und die Kresse erst zum Schluss frisch aufstreuen.
+- **Snack:** Handvoll Mandeln
+  - _Nährwerte:_ 175 kcal · 6 g Eiweiß · 2 g KH · 15 g Fett
+- **Abendsnack (proteinreich):** Griechischer Joghurt mit Honig & Chiasamen
+  - _Nährwerte:_ 240 kcal · 22 g Eiweiß · 19 g KH · 7 g Fett
 
 ---
 

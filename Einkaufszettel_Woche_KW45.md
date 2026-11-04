@@ -5,24 +5,19 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW45.md`).
 ## Obst & Gemüse
 - Beeren (TK & frisch)
 - Birnen
-- Gurke
-- Hokkaido-Kürbis
+- Champignons
 - Karotten
 - Kresse
 - Paprika
-- Pastinaken
+- Pfirsiche
 - Salat (Kopfsalat/Blattsalat)
 - Spinat (frisch/TK)
-- Süßkartoffeln
-- Wirsing
 - Äpfel
 
 ## Kühlregal / Milchprodukte
 - Feta light
-- Griechischer Joghurt
 - Hüttenkäse
 - Kefir (fettarm)
-- Magerquark
 - Milch
 - Skyr
 - Sojamilch
@@ -32,17 +27,15 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW45.md`).
 - Marmelade
 
 ## Fleisch & Fisch
+- Fisch (weiß, nach Wahl)
 - Hühnchenbrust
-- Lachsfilet
-- Mettenden
-- Rindergeschnetzeltes (mager)
+- Rindergulasch
 - Tofu
 
 ## Trockenware / Getreide / Hülsenfrüchte
 - Basmatireis
-- Quinoa
+- Kidneybohnen
 - Reiswaffeln
-- Schwarze Bohnen
 - Vollkornbrot
 - Vollkornreis
 
@@ -53,7 +46,9 @@ Zusammengefasst aus dem aktuellen Essensplan (`Essensplan_Woche_KW45.md`).
 - Mandelmus
 - Mandeln
 - Pistazien
+- Sesam
 - Sonnenblumenkerne
+- Tahin
 - Trockenobst (für Energyballs & Gym-Frühstück)
 
 ## Manuell hinzugefügt
