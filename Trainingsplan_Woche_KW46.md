@@ -1,9 +1,9 @@
 # Trainingsplan – Woche
 
 ## Montag (Funktionelles Training / Kickboxen)
-- **18–19.30 Uhr:** Funktionelles Training
+- **Morgens:** 7 km aktives Laufen
+- **18–19 Uhr:** Funktionelles Training
 - **19–20.30 Uhr:** Kickboxen
-- **oder morgens:** 7 km aktives Laufen
 
 ## Dienstag (Pause oder Kraft)
 - **Optional morgens:** Ganzkörper Kraft
@@ -15,15 +15,15 @@
 - **oder 20–21 Uhr:** Fitness Boxen
 
 ## Donnerstag (Skyboxen)
-- **18–19 Uhr:** Skyboxen
-- **oder morgens:** Ganzkörper Kraft / Kettlebell
+- **Morgens:** Ganzkörper Kraft / Kettlebell
+- **oder 18–19 Uhr:** Skyboxen
 
 ## Freitag (Kickboxen)
 - **19–21 Uhr:** Kickboxen
 
 ## Samstag (Boxen)
-- **13–15 Uhr:** Boxen
-- **oder morgens:** Regeneratives Laufen
+- **Morgens:** Regeneratives Laufen
+- **oder 13–15 Uhr:** Boxen
 
 ## Sonntag (Pause)
 - Ruhetag – Erholung, lockere Bewegung wie Spazierengehen ist okay.
